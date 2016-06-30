@@ -10,6 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <!--[if IE]>
+      <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,300,600|Droid+Serif:400,300,600" rel="stylesheet" type="text/css">
+      <link rel=stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+      <link rel="stylesheet" href="css/rv.css">
+    <![endif]-->
   </head>
   <body>
 
@@ -62,31 +68,18 @@
       </div>
     </div>
 
-  <noscript id="deferred-styles">
-    <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,300,600|Droid+Serif:400,300,600" rel="stylesheet" type="text/css">
-    <link rel=stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <link rel="stylesheet" href="css/rv.css">
-  </noscript>
-  <script>
-    var loadDeferredStyles = function() {
-      var addStylesNode = document.getElementById("deferred-styles");
-      var replacement = document.createElement("div");
-      replacement.innerHTML = addStylesNode.textContent;
-      document.body.appendChild(replacement)
-      addStylesNode.parentElement.removeChild(addStylesNode);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-        webkitRequestAnimationFrame || msRequestAnimationFrame;
-    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-    else window.addEventListener('load', loadDeferredStyles);
-  </script>
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-80008235-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async defer src='https://www.google-analytics.com/analytics.js'></script>
 
-  <script>
-    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-    ga('create', 'UA-80008235-1', 'auto');
-    ga('send', 'pageview');
-  </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!--[if !IE]> -->
+    <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,300,600|Droid+Serif:400,300,600" rel="stylesheet" type="text/css" lazyload>
+    <link rel=stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" lazyload>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" lazyload>
+    <link rel="stylesheet" href="css/rv.css" lazyload>
+    <!-- <![endif]-->
   </body>
 </html>
