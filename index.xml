@@ -2,30 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Referential Labs, LLC</title>
-    <link>https://www.referentiallabs.com/</link>
+    <link>https://referentiallabs.com/</link>
     <description>Recent content on Referential Labs, LLC</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Apr 2019 17:30:40 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 03 Apr 2019 16:40:51 -0500</lastBuildDate>
     
-	<atom:link href="https://www.referentiallabs.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://referentiallabs.com/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title></title>
-      <link>https://www.referentiallabs.com/subscribe/</link>
-      <pubDate>Wed, 03 Apr 2019 17:30:40 -0500</pubDate>
-      
-      <guid>https://www.referentiallabs.com/subscribe/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title></title>
-      <link>https://www.referentiallabs.com/about/</link>
+      <link>https://referentiallabs.com/about/</link>
       <pubDate>Wed, 03 Apr 2019 16:40:51 -0500</pubDate>
       
-      <guid>https://www.referentiallabs.com/about/</guid>
+      <guid>https://referentiallabs.com/about/</guid>
       <description>Subscribe for a monthly tip from Referential Labs on building more reliable distributed systems  Marketing Permissions  Please select all the ways you would like to hear from Referential Labs, LLC:
  Email   You can unsubscribe at any time by clicking the link in the footer of our emails. For information about our privacy practices, please visit our website.   We use Mailchimp as our marketing platform.</description>
     </item>
