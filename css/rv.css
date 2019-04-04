@@ -28,3 +28,8 @@ h1.name {
 .values .value .value-heading {
   text-transform: lowercase;
 }
+
+ul {
+  list-style: square;
+  padding: 0 0 0 2em;
+}
