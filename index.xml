@@ -1,3 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Referential Labs, LLC</title><link>https://referentiallabs.com/</link><description>Recent content on Referential Labs, LLC</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 03 Apr 2019 18:44:52 -0500</lastBuildDate><atom:link href="https://referentiallabs.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Socket Statistics on Linux with ss</title><link>https://referentiallabs.com/blog/2019/04/socket-statistics-linux-ss/</link><pubDate>Wed, 03 Apr 2019 18:44:52 -0500</pubDate><guid>https://referentiallabs.com/blog/2019/04/socket-statistics-linux-ss/</guid><description>An excellent tool when you need to troubleshoot distributed systems is ss, which provides visibility into TCP states of your live connections. Even if you know netstat this is a command you should get acquainted with because of its more powerful interface which requires fewer pipes to find the connection information you need and it is probably already installed on your favorite distribution.
-In this post, we walk through a couple of examples, and then show a real-world production problem that can be diagnosed by effective use of ss.</description></item><item><title/><link>https://referentiallabs.com/about/</link><pubDate>Wed, 03 Apr 2019 16:40:51 -0500</pubDate><guid>https://referentiallabs.com/about/</guid><description>Subscribe for a monthly tip from Referential Labs on building more reliable distributed systems Marketing Permissions Please select all the ways you would like to hear from Referential Labs, LLC:
-Email You can unsubscribe at any time by clicking the link in the footer of our emails. For information about our privacy practices, please visit our website. We use Mailchimp as our marketing platform.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Referential Labs, LLC</title>
+    <link>https://referentiallabs.com/</link>
+    <description>Recent content on Referential Labs, LLC</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://referentiallabs.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://referentiallabs.com/newsletter/</link>
+      <pubDate>Sat, 18 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://referentiallabs.com/newsletter/</guid>
+      <description>Subscribe for a monthly tip from Referential Labs on building more reliable distributed systems  Marketing Permissions  Please select all the ways you would like to hear from Referential Labs, LLC:
+ Email   You can unsubscribe at any time by clicking the link in the footer of our emails. For information about our privacy practices, please visit our website.   We use Mailchimp as our marketing platform.</description>
+    </item>
+    
+    <item>
+      <title>Socket Statistics on Linux with ss</title>
+      <link>https://referentiallabs.com/blog/2019/04/socket-statistics-linux-ss/</link>
+      <pubDate>Wed, 03 Apr 2019 18:44:52 -0500</pubDate>
+      
+      <guid>https://referentiallabs.com/blog/2019/04/socket-statistics-linux-ss/</guid>
+      <description>An excellent tool when you need to troubleshoot distributed systems is ss, which provides visibility into TCP states of your live connections. Even if you know netstat this is a command you should get acquainted with because of its more powerful interface which requires fewer pipes to find the connection information you need and it is probably already installed on your favorite distribution.
+In this post, we walk through a couple of examples, and then show a real-world production problem that can be diagnosed by effective use of ss.</description>
+    </item>
+    
+    <item>
+      <title>About Referential Labs</title>
+      <link>https://referentiallabs.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://referentiallabs.com/about/</guid>
+      <description>Referential Labs grows, educates and assists software engineering teams.  We are doing this by:    helping executive teams identify the roles you need to hire given your strategic goals and find outstanding candidates to fill them    providing world-class training and educational material on cloud delivery, distributed systems, and exploiting the benefits of functional programming no matter where you are on the adoption curve    offering our technical expertise in cloud delivery, distributed systems, and functional programming contributing to your product    Today software engineering has high turnover rates and high rates of dissatisfaction, and we have reduced or eradicated these problems at client firms by:    building effective software delivery pipelines that measurably improve team happiness by reducing stress and turn over    designing distributed systems that have well defined guarantees, failure modes, and operational properties reducing MTTR (Mean Time To Repair) /Fun/ctional Operations     Referential Labs is a group of passionate distributed systems engineers.</description>
+    </item>
+    
+    <item>
+      <title>Training for Functional Programming (using Haskell, PureScript, TypeScript, and Nix)
+</title>
+      <link>https://referentiallabs.com/training/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://referentiallabs.com/training/</guid>
+      <description>Referential Labs, LLC offers functional programming training for both application and infrastructure software development staff.  Our courses are delivered online via the following mechanisms:    synchronous live video/audio check-ins (scheduled times)    recorded videos and screencasts    shared access to Git repositories containing sample code    shared access to VMs, Docker images, Amazon Machine Images, etc for development configuration    shared access to proprietary learning and reference material in PDF and HTML formats (dead tree versions are available upon request)    We can custom design our course content for your team&amp;#39;s goals and also periodically offer individual professional developers the opportunity to learn new things via our public training offers on specific topics.</description>
+    </item>
+    
+  </channel>
+</rss>
