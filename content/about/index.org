@@ -1,0 +1,25 @@
+* About
+
+Referential Labs /grows/, /educates/ and /assists/ software engineering teams.
+
+We are doing this by:
+
+- helping executive teams identify the roles you need to hire given your strategic goals and find outstanding candidates to fill them
+
+- providing world-class training and educational material on cloud delivery, distributed systems, and exploiting the benefits of functional programming no matter where you are on the adoption curve
+
+- offering our technical expertise in cloud delivery, distributed systems, and functional programming contributing to your product
+
+* /Fun/ctional Operations
+
+Referential Labs is a group of passionate distributed systems engineers. We want to help you and your customers succeed with:
+
+- *Reliable* development environments
+
+- *Consistent* continuous delivery
+
+- *Predictable* deployments
+
+- *Scalable* systems
+
+- *High availability* where it matters

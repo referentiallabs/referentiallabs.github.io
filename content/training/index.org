@@ -1,0 +1,13 @@
+* Training
+
+We develop custom curriculum for teams and organizations based on your current technical stack as well as periodically offer open workshops virtually for individuals on more general topics related to functional programming, distributed systems, delivery pipelines.
+
+We utilize more hands-on interactive experience (in-person as pandemic allows, online exercises, and live sessions) where each student has their own cohort to share their learning journey.
+
+** Courses delivered to teams
+
+- *Build Data Pipelines with Haskell* :: Leveraging abstractions like Functor, Foldable, Traverse, Free for profit, extensibility and performance.
+- *Build Streaming Pipelines in TypeScript* :: Using the rxjs ecosystem to build streaming pipelines for use cases in frontend and backend applications. Learn to tie the concepts and Observable API design to functional programming so you can apply this thinking to more use cases not directly covered.
+- *Create Delivery Pipelines with Nix & NixOS using a functional mindset* :: *keywords:* Nix, NixOS, CI/CD
+- *Deploy High Performance HTTP APIs with Haskell and Nix* :: *keywords:* REST, HTTP, Servant, Nix
+- *Building Serverless Applications with PureScript* :: *keywords:* AWS Serverless, Lambda, storage-first architectures, PureScript

@@ -1,0 +1,43 @@
+body {
+  font-family: "Droid Serif", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #5AA60C;
+  font-family: "Droid Sans", sans-serif;
+}
+
+h1.name {
+  display: none;
+}
+
+.row #logo {
+  max-width: 256px;
+  max-height: 322px;
+}
+
+.values {
+  background: #efefef;
+}
+
+.values .value .value-multiplier {
+  color: #555555;
+  text-transform: capitalize;
+}
+
+.values .value .value-heading {
+  text-transform: lowercase;
+}
+
+ul {
+  list-style: square;
+  padding: 0 0 0 2em;
+}
+
+.pagination {
+    display: none;
+}
+
+.sub-header {
+    display: none;
+}

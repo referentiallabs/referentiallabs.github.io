@@ -1,0 +1,48 @@
+baseURL = "https://referentiallabs.com/"
+languageCode = "en-us"
+title = "Referential Labs, LLC"
+theme = "osprey-delight"
+tags = ["about", "subscribe", "blog"]
+config = "config.toml"
+canonifyURLS = true
+googleAnalytics = "UA-80008235-1"
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+[Params]
+  tagline = "Distributed systems. Cloud delivery pipelines. Functional programming."
+  author = "Referential Labs, LLC"
+  description = "A small team of expert practitioners in distributed systems, infrastructure engineering, and functional programming is building the next generation of solutions for distributed and remote organizations so their workforce can securely and effectively collaborate without sacrificing their privacy."
+  logoBig = "/images/logo512.png"
+  logoSmall = "/images/logo125.png"
+  favicon = "favicon.png"
+  opengraphImage = "/images/logo256.png"
+  email = ""
+  googleTagManager = ""
+  customCSS = true
+
+  # Social media links in footer
+  twitter = "referentiallabs"
+  github = "referentiallabs"
+  linkedin = ""
+  facebook = ""
+
+  copyright = true
+  credit = false
+
+  cacheBustCSS = true
+  cacheBustJS = true
+
+  highlightJS = true
+  highlightJSStyle = ""
+  highlightJSScript = ""
+
+[[menu.main]]
+  name = "About"
+  url  = "/about"
+  weight = 1
+
+[[menu.main]]
+  name = "Training"
+  url  = "/training"
+  weight = 2
+
