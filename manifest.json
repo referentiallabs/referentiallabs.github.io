@@ -1,0 +1,27 @@
+{
+  "name": "Referential Labs",
+  "short_name": "referentiallabs.com",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/images/logo512.webp",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/images/logo256.webp",
+      "sizes": "256x256",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo128.webp",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/images/logo64.webp",
+      "sizes": "64x64"
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#9948EC"
+}

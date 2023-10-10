@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><script src="https://www.googletagmanager.com/gtag/js?id=G-9FB8SDTWWP" async=""></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-9FB8SDTWWP')</script><meta charset="utf-8"><meta content="-673247634" name="ir-site-verification-token"><meta content="index, follow" name="”robots”"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="/styles.css" rel="stylesheet"><link href="" rel="me"><title>11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application</title><meta content="Struggling with a legacy web app that can't handle modern traffic? Before embarking on a risky rewrite, explore clever caching techniques to accelerate your aging application. This post reveals how to tune Varnish to achieve over 90% cache hit rates, reduce backend load, and optimize performance of your legacy code without engineering changes. Follow our battle-tested guide to caching strategies that buy time and deliver lasting relief for your vintage but valuable application." name="description"><meta content="#5AA60C" name="theme-color"><meta content="website" name="og:type"><meta content="en_US" name="og:locale"><meta content="Referential Labs" name="og:site_name"><meta content="/images/logos/varnish-cache.webp" name="og:image"><meta content="11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application" name="og:title"><meta content="https://referentiallabs.com/blog/varnish-12-techniques/" name="og:url"><meta content="Struggling with a legacy web app that can't handle modern traffic? Before embarking on a risky rewrite, explore clever caching techniques to accelerate your aging application. This post reveals how to tune Varnish to achieve over 90% cache hit rates, reduce backend load, and optimize performance of your legacy code without engineering changes. Follow our battle-tested guide to caching strategies that buy time and deliver lasting relief for your vintage but valuable application." name="og:description"><meta content="summary_large_image" name="twitter:card"><meta content="@referentiallabs" name="twitter:site"><meta content="@SusanPotter" name="twitter:creator"><meta content="/images/logos/varnish-cache.webp" name="twitter:image"><meta content="Varnish Cache logo" name="twitter:image:alt"><meta content="11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application" name="twitter:title"><meta content="Struggling with a legacy web app that can't handle modern traffic? Before embarking on a risky rewrite, explore clever caching techniques to accelerate your aging application. This post reveals how to tune Varnish to achieve over 90% cache hit rates, reduce backend load, and optimize performance of your legacy code without engineering changes. Follow our battle-tested guide to caching strategies that buy time and deliver lasting relief for your vintage but valuable application." name="twitter:description"><link href="https://referentiallabs.com/blog/varnish-12-techniques/" rel="canonical"><link href="/manifest.json" rel="manifest"><link color="#ffffff" href="/favicon.ico" rel="mask-icon"><link href="/favicon.ico" rel="icon"><link href="/apple-touch-icon.webp" rel="apple-touch-icon"><link href="/apple-touch-icon-precompose.webp" rel="apple-touch-icon-precomposed"><meta content="default-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://fonts.gstatic.com https://js.hsforms.net https://forms.hsforms.com https://www.google.com https://app.hubspot.com https://forms-na1.hsforms.com 'unsafe-inline'" http-equiv="Content-Security-Policy"></head><body class="bg-white"><header class="mx-auto w-screen w-full max-w-3xl md:max-w-4xl lg:max-w-6xl mx-auto"><div class="bg-white"><div class="flex mx-auto px-6 py-6 md:space-x-10 lg:px-8"><div class="flex-auto justify-start lg:flex-1"><a href="/"> <span class="sr-only">Referential Labs</span> <img alt="" class="aspect-[94/100]" height="50" src="/images/logo-sm.webp" width="47"> </a></div><nav class="space-x-2 md:space-x-8 lg:space-x-10 md:flex-auto place-end"><a class="text-base px-2 py-1 md:px-4 md:py-2 m-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/"> Home </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#benefits"> Benefits </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#team"> Team </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#plans"> Plans </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#faqs"> FAQ </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#newsletter"> Newsletter </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/blog">Blog</a></nav></div></div></header><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListelElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": { "@id": "https://referentiallabs.com/blog", "name": "Blog" }
+    }
+  ]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    
+    {
+      "@type": "Question",
+      "name": "How can I optimize Cache-Control headers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set the max-age directive appropriately to cache content for the maximum 
+freshness period. Use higher max-age values for cacheable content. Avoid 
+no-cache and no-store to block caching.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Should I manually adjust TTLs in Varnish?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, override default TTLs with higher values via custom VCL code to 
+keep cacheable content cached longer. But don&#39;t use extremely long TTLs
+that would serve stale content.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "What are the benefits of enabling grace mode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Grace mode reduces load spikes on backends by serving stale cache
+briefly during revalidations. Enable grace mode to avoid thundering
+herd problems.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Why normalize request headers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Normalizing headers like User-Agent combines cache variations for 
+much higher cache efficiency rather than separate cached versions.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "How can filtering cookies help?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Caching more content is possible by filtering out non-essential cookies
+like analytics cookies that don&#39;t impact cacheability.  
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "What&#39;s wrong with overusing Vary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Too much Vary usage leads to an explosion of unnecessarily cached  
+variants. Normalize associated request headers to ease this cache 
+fragmentation.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "How to handle uncachable content?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use hit-for-pass and hit-for-miss configurations to optimize caching
+of responses that can&#39;t be cached initially but may become cacheable.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Will Redis help increase hits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Redis provides another caching layer to capture misses from  
+Varnish&#39;s cache for dynamic or personalized content.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Should I offload static assets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Offloading static assets improves cache density. Remove them from
+Varnish caching since they waste space but never change.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Why rate limit crawlers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aggressive crawler traffic can easily overwhelm caches as they  
+expire. Enforce rate limits to prevent cascade failures during spikes.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Is proactive purging beneficial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, proactively purge old content immediately when updated rather 
+than just letting caches slowly expire stale content.
+"
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Should I monitor caching performance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Continuously monitor key metrics like hit rate, misses, and object
+bloat. Use this data to further optimize Varnish configurations for 
+even better caching.
+"
+      }
+    },
+    
+  ]
+}
+</script><main class="max-w-3xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full px-3"><article class="prose"><h1 class="text-2xl font-bold">11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application</h1><p class="text-base font-light italic pb-3 border-b border-stone-300">Sat Aug 26 2023 19:00:00 GMT-0500 (Central Daylight Time)</p><div><div class="prose"><p>As web applications grow in popularity, they often struggle to scale to meet increasing traffic demands. The application servers become overloaded, response times suffer, and the user experience deteriorates. Many sites turn to cache solutions like Varnish to improve performance and reduce load on their backends.</p><p>Varnish provides a caching HTTP reverse proxy that stores common responses in memory and serves those directly, bypassing application servers entirely for cached content. This greatly reduces the work required from the backend application servers. However, Varnish will only provide significant benefit if it can serve a high percentage of requests from cache - known as the hit rate.</p><p>Tuning Varnish appropriately is crucial to achieving a high hit rate. There are many techniques that can optimize Varnish to cache more content and keep it cached longer. With the right configuration, sites can often improve their hit rate from sub 50% to over 90%, with corresponding reductions in application server load.</p><p>This essay will explore 11 key optimization techniques to tune Varnish caching and attain high hit rates:</p><h2>1. Set Cache-Control Headers</h2><p>The Cache-Control header instructs caches how to handle content. It is one of the primary mechanisms for controlling cache behavior. Varnish looks at Cache-Control to determine if a response can be cached and for how long.</p><p>Backend applications should set the max-age directive appropriately in Cache-Control. This tells caches the maximum time they can reuse a response before revalidating it. Higher max-age values allow longer caching.</p><p>For example:</p><pre><code class="language-text hljs language-plaintext">Cache-Control: max-age=3600
+</code></pre><p>This caches the content for one hour before revalidating. Adjust max-age based on how frequently content changes. Use the longest duration that will maintain freshness.</p><p>Setting no-cache or no-store instead prevents caching entirely. And private indicates not to cache publicly shared caches like Varnish.</p><p>So proper use of Cache-Control is imperative to maximize Varnish hit rates.</p><h2>2. Adjust TTLs</h2><p>The TTL (Time To Live) determines the cache lifetime of an object in Varnish. After the TTL expires, caches are invalidated.</p><p>Varnish computes a TTL based on Cache-Control headers and other factors. But Varnish also allows manually overriding TTLs in VCL configuration.</p><p>For example:</p><pre><code class="language-text hljs language-plaintext">sub vcl_backend_response {
+  if (bereq.url ~ "^/legacy/") {
+    set beresp.ttl = 4h; 
+  }
+}
+</code></pre><p>This sets a 4 hour TTL for legacy application URLs that aren't cache-friendly. Overriding with longer TTLs where appropriate keeps more content cached longer.</p><p>But beware setting TTLs too long, which could serve stale content. Monitor cache invalidation rates and adjust accordingly.</p><h2>3. Enable Grace Mode</h2><p>Grace mode instructs Varnish to keep serving cached content for a period after it expires. This grace window prevents a "thundering herd" of requests from hitting backends all at once when caches invalidate.</p><p>For example:</p><pre><code class="language-text hljs language-plaintext">sub vcl_backend_response {
+  set beresp.grace = 1h;
+}
+</code></pre><p>This allows serving cache for 1 hour past its TTL. The grace period allows time to fetch updated content in the background.</p><p>Grace mode dramatically avoids traffic spikes to backend. Set grace long enough to comfortably revalidate caches in background.</p><h2>4. Normalize Request Headers</h2><p>Varnish keeps separate cache versions for every variation of a request header. So a request with "en-gb" in Accept-Language gets a different cached response than "en-us", even if the content is identical.</p><p>This cache fragmentation severely impacts hit rates. Normalizing headers combines these variations:</p><pre><code class="language-text hljs language-plaintext">sub vcl_recv {
+  if (req.http.Accept-Language) {
+    set req.http.Accept-Language = "en";
+  }
+}
+</code></pre><p>Now Varnish will treat all English language variants the same. Do this normalization for headers like Cookies, User-Agent, and Accept-Encoding too.</p><h2>5. Filter Cookies</h2><p>By default, Varnish caches nothing when request cookies are present, to avoid caching personalized content. This often hinders caching significantly.</p><p>But many cookies like analytics cookies don't impact cacheability. Filter out non-essential cookies:</p><pre><code class="language-text hljs language-plaintext">sub vcl_recv {
+  if (!req.url ~ "^/user/") {
+    unset req.http.Cookie;
+  }
+}
+</code></pre><p>Now only /user/ requests with session cookies bypass cache. Varnish will cache content for requests with filtered cookies.</p><p>Implement cookie filtering rules cautiously to avoid caching personalized content improperly. But huge gains are possible filtering non-essential cookies.</p><h2>6. Watch out for Vary</h2><p>The Vary header tells caches that responses differ based on specific request headers. This requires caching multiple variants.</p><p>For example:</p><pre><code class="language-text hljs language-plaintext">Vary: User-Agent
+</code></pre><p>This means Varnish must cache a separate copy for every observed User-Agent. Just the slightest difference in user agent strings leads to many redundant cache objects.</p><p>Ideally applications should not set Vary arbitrarily. But when they do, normalize the associated request headers, just like #4. Otherwise cache efficiency suffers drastically.</p><h2>7. Handle Uncacheable Content</h2><p>Not all content can be cached, like dynamic or personalized data. But we still want an efficient caching strategy for uncacheable content.</p><p>Use hit-for-pass configuration to indicate certain requests always pass to backend. For example:</p><pre><code class="language-text hljs language-plaintext">sub vcl_recv {
+  if (req.url ~ "^/api/") {
+    return(pass);
+  }
+}
+</code></pre><p>Now /api/ requests that can't be cached will completely bypass cache. Varnish won't waste any effort caching responses marked uncacheable.</p><p>It's also possible to configure hit-for-miss caching for content like responses with cookies that become cacheable later. This eases transition to cacheable.</p><h2>8. Offload Static Assets</h2><p>Static assets like images, CSS and JS don't benefit from caching in Varnish - they never change. But storing them in Varnish wastes precious cache space.</p><p>Offload static assets to a cookieless domain like static.example.com. Configure this domain to skip Varnish and hit backend servers directly. Varnish no longer wastes space storing static content.</p><p>For dynamic content, redirect static asset references to the static domain. This improves cache efficiency tremendously.</p><h2>9. Limit Crawl Rate</h2><p>Aggressive crawlers can wreck havoc on caches by slamming backends when caches inevitably expire.</p><p>Use Varnish's rate limiting capabilities to restrict crawling activity. For example:</p><pre><code class="language-text hljs language-plaintext">sub vcl_recv {
+  if (req.http.User-Agent ~ "bot") {
+    set req.http.X-Varnish-Rate = "5r/s";
+  }
+}
+</code></pre><p>This limits crawlers to 5 requests per second. Configure rate limits wisely to find balance between crawl needs and capacity.</p><h2>10. Purge Content</h2><p>When content changes, caches need to be purged so new content is fetched. Use Varnish's PURGE requests to actively invalidate content.</p><p>For example, when a post is updated:</p><pre><code class="language-text hljs language-plaintext">PURGE /blog/post/123
+</code></pre><p>This immediately invalidates the old post so new content is cached on next request.</p><p>Strategically purging cache proactively keeps content fresh rather than waiting for TTLs to slowly expire stale content.</p><h2>11. Monitor Performance</h2><p>Continuously monitor key metrics to tune Varnish. varnishstat provides great visibility:</p><ul><li>hit rate percentage - target over 90%</li><li>cache miss ratio - aim for under 1:100</li><li>backend requests - minimize these to ease load</li><li>object bloat - trim down needlessly cached content</li></ul><p>Monitor these metrics on an ongoing basis and optimize configurations to gradually improve. Don't forget, incremental gains add up over time!</p><h2>Conclusion</h2><p>Achieving high hit rates with Varnish requires continual optimization. Implementing techniques like the 12 covered in this essay can drastically boost performance. Sites often see hit rate gains of 40% or more with appropriate tuning.</p><p>The savings in backend load, traffic costs and latency benefits hugely impact overall application user experience as traffic scales up. The difference between a 50% cache hit rate and 90% is tremendous in actual capacity.</p><p>But attaining those high hit rates involves trade offs in complexity and maintenance. There is no "one size fits all" configuration. Each application's needs and content require custom optimization.</p><p>Careful tuning and diligent monitoring is an iterative process. Work through these caching techniques step-by-step to improve Varnish response times and reduce that load off struggling backends. The effort is well worth the substantial gains in site performance and scalability that result from making the most of Varnish caching capabilities.</p></div></div><section class="border-t border-gray-300 mt-6 lg:mt-12"><h2 class="text-2xl font-bold">Frequently Asked Questions</h2><div class="px-0"><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>How can I optimize Cache-Control headers?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Set the max-age directive appropriately to cache content for the maximum freshness period. Use higher max-age values for cacheable content. Avoid no-cache and no-store to block caching.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>Should I manually adjust TTLs in Varnish?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Yes, override default TTLs with higher values via custom VCL code to keep cacheable content cached longer. But don't use extremely long TTLs that would serve stale content.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>What are the benefits of enabling grace mode?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Grace mode reduces load spikes on backends by serving stale cache briefly during revalidations. Enable grace mode to avoid thundering herd problems.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>Why normalize request headers?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Normalizing headers like User-Agent combines cache variations for much higher cache efficiency rather than separate cached versions.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>How can filtering cookies help?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Caching more content is possible by filtering out non-essential cookies like analytics cookies that don't impact cacheability.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>What's wrong with overusing Vary?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Too much Vary usage leads to an explosion of unnecessarily cached variants. Normalize associated request headers to ease this cache fragmentation.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>How to handle uncachable content?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Use hit-for-pass and hit-for-miss configurations to optimize caching of responses that can't be cached initially but may become cacheable.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>Will Redis help increase hits?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Yes, Redis provides another caching layer to capture misses from Varnish's cache for dynamic or personalized content.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>Should I offload static assets?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Offloading static assets improves cache density. Remove them from Varnish caching since they waste space but never change.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>Why rate limit crawlers?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Aggressive crawler traffic can easily overwhelm caches as they expire. Enforce rate limits to prevent cascade failures during spikes.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>Is proactive purging beneficial?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Yes, proactively purge old content immediately when updated rather than just letting caches slowly expire stale content.</div> </detail><detail class="my-2 pb-1 list-none"> <summary class="pt-1"><strong>Should I monitor caching performance?</strong></summary> <div class="pb-4 pt-1 border-b border-b-stone-300">Continuously monitor key metrics like hit rate, misses, and object bloat. Use this data to further optimize Varnish configurations for even better caching.</div> </detail></div></section></article></main><footer class="bg-white"><div class="mx-auto max-w-7xl overflow-hidden"><div class="mt-4 flex justify-center space-x-10"><a class="text-stone-500 hover:text-green-700" href="https://twitter.com/referentiallabs"> <span class="sr-only">Twitter</span> <svg class="h-6 w-6" viewbox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg> </a><a class="text-stone-500 hover:text-green-700" href="https://github.com/referentiallabs"> <span class="sr-only">GitHub</span> <svg class="h-6 w-6" viewbox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" fill-rule="evenodd"></path></svg> </a></div><p class="mt-2 md:mt-4 text-center text-xs leading-5 text-stone-600">© 2020 - 2023 Referential Labs LLC. All rights reserved.</p></div></footer></body></html>

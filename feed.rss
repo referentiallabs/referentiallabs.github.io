@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+  <channel>
+    <title/>
+    <link>http://localhost/</link>
+    <atom:link href="http://localhost/feed.rss" rel="self" type="application/rss+xml"/>
+    <description/>
+    <lastBuildDate>Tue, 10 Oct 2023 03:35:07 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>Lume v1.18.5</generator>
+    <item>
+      <title>API-First Development</title>
+      <link>http://localhost/blog/api-first-development/</link>
+      <guid isPermaLink="false">http://localhost/blog/api-first-development/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>APIs have become the core building blocks of modern software applications. Taking an API-first approach, where APIs are designed upfront before implementation, can provide immense benefits for enterprise architecture. This white paper explores API-first development - its concepts, benefits, challenges and best practices - to enable SaaS teams to build scalable and flexible platforms.</p>
+        <h2>Benefits of API-First</h2>
+        <p>API-first development places APIs as the central focus in the software design process. Key benefits include:</p>
+        <dl>
+        <dt>Improved System Architecture</dt>
+        <dd>Designing APIs first enables better planning of system modules, interfaces and contract. This enhances consistency, reusability and decoupling. For example, defining payment APIs allows systematically designing the interactions between frontend, payment service, fraud detection service, and database. This enhances consistency across services, reusability of business logic, and decoupling of concerns.</dd>
+        <dt>Developer Experience</dt>
+        <dd>Well-designed APIs and contracts improve developer experience. APIs act as a convenient interface for developers consuming services and data from other teams. For example, a unified user management API abstracts complex authentication logic for frontend developers. Clean documentation and SDKs further improve usability.</dd>
+        <dt>Agility</dt>
+        <dd>API-first modularizes business capabilities into reusable services. Teams can independently develop and iterate on services, as long as they maintain the contract. For instance, the payment API allows frequently optimizing the payment service without impacting other modules.</dd>
+        <dt>Evolution</dt>
+        <dd>APIs allow services to evolove without forcing consumers to change. API gateways can support running multiple versions of an API side by side. This enables gradually releasing new API versions while maintaining old ones for backwards compatibility.</dd>
+        <dt>Insights</dt>
+        <dd>In-depth API analytics provides data to improve performance, reliability, security and design. Detailed logs give visibility into usage patterns, failure instances, and consumption by client type. APIs become the product itself rather than just plumbing.</dd>
+        </dl>
+        <h2>API Strategy for SaaS Products</h2>
+        <p>API-first development is highly relevant for B2B SaaS products for the following reasons:</p>
+        <dl>
+        <dt>Extensibility</dt>
+        <dd>Well-designed APIs allow B2B SaaS products to integrate and interoperate with other systems or offer a viable onboarding path. Customers can connect the SaaS platform to their own software or third-party apps via APIs. This enables extending the core product's functionality.</dd>
+        <dt>Customizability</dt>
+        <dd>APIs enable customers to customize and tailor the SaaS product to their specific needs. Exposing configuration, business logic, or data retrieval via APIs gives flexibility.</dd>
+        <dt>Developer Experience</dt>
+        <dd>Many B2B SaaS customers have their own developer teams to build internal tools and extensions. Clean and well-documented APIs improve the experience for these customer developers.</dd>
+        <dt>Future-proofing</dt>
+        <dd>APIs abstract underlying implementation from the external contract. The SaaS product can reinvent internals without affecting customer integration as long as APIs are maintained.</dd>
+        <dt>Innovation Velocity</dt>
+        <dd>Strong APIs allow SaaS engineering teams to innovate and release new capabilities faster. Internal services can iterate independently while satisfying the API contract.</dd>
+        </dl>
+        <p>In essence, API-first principles empower B2B SaaS products to be customizable, extensible, and scalable. APIs create a seamless experience for third-party developers and internal teams to drive innovation velocity. Investing in API design is key for successful modern SaaS architecture.</p>
+        <h2>API Styles</h2>
+        <p>Teams have several options for implementing APIs, each with their pros and cons:</p>
+        <ul>
+        <li>REST - Universal and scalable, ideal for public APIs due to ubiquity of HTTP. Lightweight but can get chatty.</li>
+        <li>GraphQL - Efficient for mobile and web apps, focused on querying data. Reduces roundtrips vs REST. Schema evolution requires planning.</li>
+        <li>gRPC - High-performance, contract-first approach ideal for microservices. Protobuf binary format maximizes speed. Limited tooling and maturity.</li>
+        </ul>
+        <p>Choosing the right style depends on use cases, expected evolution, team skills and other architectural considerations.</p>
+        <h2>Challenges</h2>
+        <p>API-first has overhead upfront in designing and documenting APIs thoroughly. Mocking services before implementation involves additional effort. The strict contract-first approach reduces flexibility to change APIs later.</p>
+        <h2>Best Practices</h2>
+        <p>The get the most out of your API products, you will need to be mindful of the following practices to avoid some common pitfalls and time-sinks.</p>
+        <dl>
+        <dt>Cross-functional Collaboration</dt>
+        <dd>API design requires collaboration between frontend, backend, product and DevOps teams.</dd>
+        <dt>Mocking and Simulation</dt>
+        <dd>Creating mock API simulations enables testing before full implementation.</dd>
+        <dt>Well-Documented Contract</dt>
+        <dd>Maintain comprehensive API documentation as the single source of truth.</dd>
+        <dt>Consumer-Driven Iteration</dt>
+        <dd>Monitor API usage and continuously gather feedback from consumers.</dd>
+        <dt>Gradual Evolution</dt>
+        <dd>Deprecate APIs over time rather than sudden breaking changes. Support and nudge legacy consumers.</dd>
+        </dl>
+        <p>Taking an API-first approach is key for modern businesses pursuing digital transformation and cloud-native architectures. Investing in API design lays the foundation for reusable services, empowered developer experience, and adaptable platforms.</p>
+        <h2>Well-designed API Characteristics</h2>
+        <p>Well-designed APIs exhibit characteristics like:</p>
+        <dl>
+        <dt>Discoverability</dt>
+        <dd>There are several ways to promote API discoverability. In the context of public APIs, such as:
+        <ul>
+        <li>well-organized comprehensive documentation with examples in multiple mainstream languages</li>
+        <li>self-descriptive APIs that follow a set of conventions</li>
+        <li>searchability via good metadata</li>
+        <li>offering screencast and conference talk recordings for developers to consume</li>
+        <li>a sandboxed test environment, when relevant</li>
+        <li>publish client SDKs in target programming languages</li>
+        </ul>
+        </dd>
+        <dt>Consistency</dt>
+        <dd>Leverage common patterns and standards to provide predictability for things like pagination, URI formats and patterns, naming conventions, etc.</dd>
+        <dt>Extensibility</dt>
+        <dd>APIs facilitate custom integrations and extensions.
+        Iterability</dd>
+        <dd>APIs evolve gradually without breaking changes.</dd>
+        <dt>Security</dt>
+        <dd>Authentication and authorization follow standards.</dd>
+        <dt>Observability</dt>
+        <dd>Analytics and monitoring provide visibility into usage.</dd>
+        </dl>
+        <p>These API design principles enable the business capabilities of SaaS platforms to be reusable, portable and adaptable building blocks. Teams can deliver faster and customers can integrate seamlessly.</p>
+        <p>But APIs are more than just technical plumbing. They represent the product experience for developer users. Crafting excellent APIs is akin to crafting stellar user interfaces. Customer success depends equally on both external design and internal architecture.</p>
+        <p>That's why I recommend API-first as a core SaaS development paradigm. Starting with API design unlocks architectural thinking for your engineering teams. Keep APIs at the heart of your technology strategy and transform into a truly modern digital enterprise.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Thu, 28 Sep 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>From VPNs to Zero Trust</title>
+      <link>http://localhost/blog/vpns-to-zero-trust/</link>
+      <guid isPermaLink="false">http://localhost/blog/vpns-to-zero-trust/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Over the past two decades, corporate network security has undergone a dramatic evolution. What began as a perimeter model based on VPNs and firewalls has gradually transitioned into the emerging zero trust paradigm. This evolution has been driven by advances in technology, the rise of the cloud and distributed workforces.</p>
+        <p>In this post, we will explore:</p>
+        <ul>
+        <li>The early firewall and VPN model</li>
+        <li>Overcoming VPN limitations</li>
+        <li>Principles of zero trust</li>
+        <li>Technologies enabling zero trust</li>
+        </ul>
+        <p>By the end, you will understand both the limitations that drove the evolution away from traditional VPNs, as well as the innovations which make more dynamic zero trust networks possible today.</p>
+        <h2>The Early Firewall and VPN Model</h2>
+        <p>In the late 1990s, as corporate networks began connecting to the open internet, a perimeter-based security model emerged centered around firewalls and VPN concentrators.</p>
+        <p>The basic architecture looked like:</p>
+        <ul>
+        <li><strong>Corporate network</strong>
+        <ul>
+        <li>Private LANs and resources</li>
+        <li>Implicitly trusted internal access</li>
+        </ul>
+        </li>
+        <li><strong>Firewall</strong>
+        <ul>
+        <li>Gateway between corporate network and untrusted internet</li>
+        <li>Allow/deny traffic based on ports, protocols and IP addresses</li>
+        </ul>
+        </li>
+        <li><strong>VPN concentrator</strong>
+        <ul>
+        <li>Outside the firewall to allow encrypted remote access</li>
+        <li>Tunnel to funnel and authenticate remote user connections</li>
+        <li>Client/server or hub-and-spoke architecture</li>
+        </ul>
+        </li>
+        </ul>
+        <p><strong>Key goals of this model:</strong></p>
+        <ul>
+        <li>Clear security boundary between trusted internal network and untrusted external networks</li>
+        <li>Limit attack surface by funneling connections through controlled choke points</li>
+        <li>Authenticate and authorize remote users before allowing access</li>
+        <li>Prevent leakage of private internal resources to public internet</li>
+        </ul>
+        <h3>Securing the Corporate Network Perimeter</h3>
+        <p>Firewall and VPN appliances provided a pragmatic compromise given the state of technology in the late 90s and early 2000s.</p>
+        <p>At the time:</p>
+        <ul>
+        <li>Internet connectivity was still relatively new and viewed as inherently insecure</li>
+        <li>Encryption was very costly to implement at scale</li>
+        <li>Security relied on controlling traffic at network perimeter choke points</li>
+        <li>Most network traffic stayed within privately owned LANs and WANs</li>
+        <li>Devices were largely corporate controlled on corporate premises</li>
+        </ul>
+        <p>So it made sense to funnel all access through dedicated gateways that inspect traffic. Resources inside the network perimeter could be implicitly trusted and accessed directly.</p>
+        <p>This allowed companies to connect to the internet, while maintaining a clearly defined security boundary.</p>
+        <h3>Challenges with Remote Access</h3>
+        <p>While firewalls and VPNs enabled secure remote access, some key challenges emerged:</p>
+        <ul>
+        <li><strong>Complex firewall configuration:</strong>
+        <ul>
+        <li>Rules based on IP made granular policies difficult</li>
+        <li>Every firewall needed updated for network changes</li>
+        <li>Risk of misconfiguration leaving security holes</li>
+        </ul>
+        </li>
+        <li><strong>User management:</strong>
+        <ul>
+        <li>Authentication used OS schemas like LDAP</li>
+        <li>Limited integration with enterprise identity systems</li>
+        </ul>
+        </li>
+        <li><strong>Scaling bandwidth:</strong>
+        <ul>
+        <li>Traffic bottleneck through VPN concentrators</li>
+        <li>Difficult to add redundancy and failover</li>
+        </ul>
+        </li>
+        <li><strong>Application security:</strong>
+        <ul>
+        <li>Network layer unencrypted on internal LANs</li>
+        <li>Additional security required for apps like SSH and HTTPS</li>
+        </ul>
+        </li>
+        </ul>
+        <p>These limitations would gradually become more acute over time, as networks evolved and new technologies emerged.</p>
+        <h2>Overcoming VPN Limitations</h2>
+        <p>Throughout the 2000s and 2010s, rapid technological changes in 3 key areas drove networks to move beyond the traditional VPN model:</p>
+        <ol>
+        <li><strong>Identity management</strong> - More granular user and role-based access controls.</li>
+        <li><strong>Encryption</strong> - Faster and cheaper encryption on local devices.</li>
+        <li><strong>Cloud networks</strong> - Dynamic network environments requiring more flexible security.</li>
+        </ol>
+        <p>Let's look at each area:</p>
+        <h3>Improved Identity Management</h3>
+        <p>Traditionally, VPNs relied on directory services like LDAP and RADIUS for user authentication. As identity management systems advanced, it became possible to integrate richer user contexts into network security policies.</p>
+        <p>Capabilities like:</p>
+        <ul>
+        <li>Centrally managing users and roles</li>
+        <li>Federation with cloud apps and social login</li>
+        <li>Multi-factor authentication</li>
+        <li>Contextual and risk-based access policies</li>
+        </ul>
+        <p>Allowed user identities to become the core of network access controls, rather than just IP addresses.</p>
+        <h3>Faster Encryption</h3>
+        <p>In the 1990s and early 2000s, encryption was resource intensive and time consuming. Algorithms like AES, along with faster processors and crypto accelerators, made encryption much more efficient.</p>
+        <p>This allowed:</p>
+        <ul>
+        <li>Encrypting traffic at the edge on user devices</li>
+        <li>Establishing encrypted connections without a central VPN bottleneck</li>
+        <li>Scaling networks with distributed encryption performance</li>
+        </ul>
+        <p>Encryption could be ubiquitous instead of limited to VPN tunnel endpoints.</p>
+        <h3>Dynamic Cloud Networks</h3>
+        <p>As organizations began adopting cloud technologies, network architectures had to become more flexible and agile.</p>
+        <p>Characteristics like:</p>
+        <ul>
+        <li>Rapid provisioning of virtual resources</li>
+        <li>Frequent changes in devices, users and roles</li>
+        <li>Resources moving between on-premise and cloud</li>
+        <li>Expanding ecosystem of SaaS apps</li>
+        </ul>
+        <p>Required security to be identity-centric, context-aware, and dynamically responsive to changes.</p>
+        <h2>Principles of Zero Trust</h2>
+        <p>These technological advances paved the way for a new security paradigm - zero trust. Instead of securing a static network perimeter, zero trust focuses on:</p>
+        <dl>
+        <dt>Never trust, always verify</dt>
+        <dd>Ensure devices, users and network traffic are authorized</dd>
+        <dt>Least privilege access</dt>
+        <dd>Only allow essential access, limit lateral movement</dd>
+        <dt>Encrypt everything</dt>
+        <dd>Encrypt data in transit and at rest</dd>
+        <dt>User/role based access</dt>
+        <dd>Focus on identity, not network location</dd>
+        <dt>Security across all layers</dt>
+        <dd>Consistent controls across network, cloud, devices and apps</dd>
+        <dt>Dynamic risk-based policies</dt>
+        <dd>Adapt access based on contextual signals like device, location etc.</dd>
+        </dl>
+        <p>This allows much more flexible and granular access controls, that can accommodate factors like cloud networks, BYOD, and global distributed users and devices.</p>
+        <p>Key technologies that enable zero trust include:</p>
+        <h3>Cryptography and Key Management</h3>
+        <p>Encrypting network traffic end-to-end prevents eavesdropping and tampering. This requires:</p>
+        <ul>
+        <li>Efficient encryption protocols like TLS and IPSec</li>
+        <li>Cryptographic APIs to integrate encryption into apps</li>
+        <li>Key management systems to issue, rotate and revoke keys</li>
+        </ul>
+        <p>Encrypting data at rest prevents breaches. Tools include file and disk encryption, tokenized data etc.</p>
+        <h3>NAT Traversal and Tunneling</h3>
+        <p>Network address translation (NAT) and firewalls can prevent direct peer-to-peer connections. Solutions include:</p>
+        <ul>
+        <li>Tunneling protocols to encapsulate connections in UDP/TCP</li>
+        <li>STUN and TURN to discover and relay NAT bindings</li>
+        <li>Hole punching to dynamically open firewall ports</li>
+        </ul>
+        <p>This enables encrypted tunneling through NAT devices without modification.</p>
+        <h3>Mesh Networks</h3>
+        <p>Mesh topologies allow direct peer connections between devices, without funneling through a central hub. Benefits include:</p>
+        <ul>
+        <li>Avoiding bottlenecks, single points of failure</li>
+        <li>Peer nodes can dynamically join/leave</li>
+        <li>Traffic takes optimal path through mesh</li>
+        <li>Easy to incrementally deploy</li>
+        </ul>
+        <h3>Microsegmentation</h3>
+        <p>Microsegmentation divides networks into smaller segments with granular policy enforcement between segments. This contains breaches and limits lateral movement.</p>
+        <h3>Analytics and Automation</h3>
+        <p>Zero trust requires continuous assessment of risk signals like user activity, device security hygiene, vuln scans etc. Automating dynamic policy enforcement reduces reliance on static rules.</p>
+        <h2>Conclusion</h2>
+        <p>Evolving from perimeter VPN models to zero trust networks enables organizations to keep pace with cloud adoption, mobile workforces, and distributed technology ecosystems.</p>
+        <p>Key drivers of this evolution include:</p>
+        <ul>
+        <li><strong>Limitations of traditional VPN architecture</strong> - Inflexible, complex, traffic bottlenecks</li>
+        <li><strong>Advances in identity management</strong> - Granular user/role access controls</li>
+        <li><strong>Ubiquitous encryption</strong> - End-to-end protection of data in transit and at rest</li>
+        <li><strong>Dynamic cloud networks</strong> - Require continuous security monitoring and context-aware controls</li>
+        </ul>
+        <p>With careful planning and implementation, organizations can transition to zero trust in an incremental way. The result is networks that provide only essential access based on least privilege principles, while enabling users to securely connect from anywhere on any device.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Thu, 21 Sep 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Test Driven Infrastructure Configs with varnishtest</title>
+      <link>http://localhost/blog/varnishtest/</link>
+      <guid isPermaLink="false">http://localhost/blog/varnishtest/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Infrastructure as code and continuous integration/continuous delivery (CI/CD) pipelines are becoming the norm for delivering software applications. By codifying infrastructure and leveraging automation, organizations can release changes faster and with more reliability.</p>
+        <p>A key practice in modern software delivery is test driven development (TDD), where tests are written before code. This ensures that the code is testable and aligns with requirements. The same TDD principles can be applied when managing infrastructure configurations.</p>
+        <p>In this article, we will look at how to build a CI/CD pipeline with test driven infrastructure configurations, using Varnish Cache and the <code>varnishtest</code> tool as a practical example.</p>
+        <h2>What to expect from this post</h2>
+        <p>This article aims to provide a guide on leveraging test driven development principles for infrastructure code and configurations, using examples of Varnish Cache's varnishtest. Specifically:</p>
+        <ul>
+        <li>The benefits of test driven infrastructure configurations and CI/CD pipelines</li>
+        <li>An overview of Varnish Cache and how it is configured through VCL</li>
+        <li>Introduction to the <code>varnishtest</code> tool for testing Varnish logic</li>
+        <li>Best practices for writing robust <code>varnishtest</code> test cases</li>
+        <li>How to effectively incorporate <code>varnishtest</code> in a CI pipeline</li>
+        <li>Conclusion on how Varnish Cache and <code>varnishtest</code> enable test driven infrastructure.</li>
+        </ul>
+        <h2>Overview</h2>
+        <p>Varnish Cache is a popular open source web application accelerator. It can speed up websites by caching content close to visitors. The Varnish configuration determines its exact behavior and is described in VCL (Varnish Configuration Language).</p>
+        <p>To validate that configuration changes in Varnish VCL work as intended, the <code>varnishtest</code> tool can be used. It is part of Varnish Cache and allows writing integration tests that interact with a Varnish instance to test scenarios and expectations.</p>
+        <p>By incorporating <code>varnishtest</code> in an automated CI/CD pipeline, infrastructure changes can be validated before they are deployed to production environments. The workflow would look like this:</p>
+        <ol>
+        <li>A developer makes a change to the Varnish VCL configuration file</li>
+        <li>They write an integration test with <code>varnishtest</code> that validates the expected behavior</li>
+        <li>A pull request is opened with the VCL change and test</li>
+        <li>In the CI pipeline, the <code>varnishtest</code> is executed against the new VCL</li>
+        <li>If the test passes, the change can be reviewed and merged</li>
+        <li>In the CD pipeline, the VCL change is deployed after passing all tests</li>
+        </ol>
+        <p>This ensures infrastructure changes are thoroughly tested before they are deployed. The <code>varnishtest</code> tool essentially allows test driven development for infrastructure configurations.</p>
+        <p>In the rest of this article, we will explore <code>varnishtest</code> and Varnish in more detail.</p>
+        <h2>Introduction to Varnish Cache</h2>
+        <p>Varnish Cache is an HTTP accelerator designed for speeding up websites and APIs. It can store cacheable content in memory, closer to your visitors. This reduces latency and takes load off your web servers.</p>
+        <p>Some typical use cases for Varnish include:</p>
+        <ul>
+        <li>Caching static assets like images, CSS and Javascript files</li>
+        <li>Caching API responses</li>
+        <li>Offloading traffic from application servers</li>
+        <li>Implementing edge logic like routing and access control lists</li>
+        </ul>
+        <p>Varnish is often deployed as a reverse proxy. Visitors send requests to Varnish, which forwards cache misses to application servers in the backend.</p>
+        <p>To determine the exact behavior of Varnish, you configure it with VCL (Varnish Configuration Language). It describes how Varnish should handle requests and responses.</p>
+        <p>Some examples of VCL functionality:</p>
+        <ul>
+        <li>Defining when content can be cached</li>
+        <li>Selecting which backend server to route requests to</li>
+        <li>Transforming requests and responses</li>
+        <li>Implementing access control lists</li>
+        </ul>
+        <p>Changes in VCL can introduce bugs or incorrect behavior. That's why testing the VCL is important.</p>
+        <h2>Introducing varnishtest</h2>
+        <p>The <code>varnishtest</code> tool is part of Varnish Cache and makes it easy to test VCL programmatically. It allows writing integration tests for your Varnish configuration.</p>
+        <p>The <code>varnishtest</code> tool performs the following:</p>
+        <ul>
+        <li>It starts a Varnish test instance with the VCL configuration under test</li>
+        <li>HTTP clients can send requests to the test Varnish and receive responses</li>
+        <li>Conditions and expectations can be asserted</li>
+        </ul>
+        <p>This validates that the VCL logic results in the correct Varnish behavior.</p>
+        <p>A test case typically interacts with the following components:</p>
+        <ul>
+        <li>Varnish instance</li>
+        <li>Backend server</li>
+        <li>HTTP client</li>
+        </ul>
+        <p>These are declared in VTC files. VTC stands for Varnish Test Case and uses a domain specific language.</p>
+        <p>Here is an example of a Varnish Test Case:</p>
+        <pre><code class="language-text">varnish v1 -vcl+backend {
+        # VCL configuration
+        } -start
+        
+        server s1 {
+        # Handles requests
+        } -start  
+        
+        client c1 {
+        
+        # Send request
+        txreq
+        
+        # Receive response
+        rxresp
+        
+        # Validate response
+        expect resp.status == 200
+        
+        } -run
+        ```text
+        
+        This starts a Varnish instance v1 with the provided VCL, as well as a backend server s1. The client c1 sends a request and validates that the response status code is 200 OK.
+        
+        Multiple requests can be executed and expectations can be validated. This allows testing a variety of scenarios.
+        
+        Running `varnishtest` will execute the test case and report if any expectations fail:
+        
+        ```text
+        $ varnishtest example.vtc
+        Varnish test case example.vtc passed!
+        ```text
+        
+        varnishtest allows test driven development of infrastructure configurations. By writing the test case upfront, you can validate that intended behavior is implemented correctly.
+        
+        Now let's look at how to leverage `varnishtest` in a CI/CD pipeline.
+        
+        ## Building a CI/CD pipeline
+        
+        To prevent defects in production, it's important to test infrastructure configuration changes before deploying them. By incorporating automated testing in a CI/CD pipeline, we can enable test driven infrastructure.
+        
+        To setup a CI/CD tool for testing Varnish config changes with `varnishtest` the basic workflow will look like this:
+        
+        When a pull request is opened with changes to VCL and `varnishtest` files, the workflow will:
+        
+        1. Check out the code
+        2. Run `varnishtest` to validate the VCL logic
+        3. Publish the test results
+        4. Notify about the test outcome
+        
+        This gives fast feedback on whether the infrastructure change works as expected.
+        
+        Let's walk through the workflow step-by-step.
+        
+        ### 1. Check out code
+        
+        The first job in the workflow checks out the code from the pull request. This makes the changed files available where the next steps will run.
+        
+        ### 2. Run varnishtest
+        
+        Next up, `varnishtest` is executed to validate the VCL logic:
+        
+        ```shell
+        varnishtest -q varnishtest.vtc 
+        ```text
+        
+        The Varnish package is installed and then `varnishtest` is called to run the integration test suite in quiet mode.
+        
+        If any expectations fail, `varnishtest` will return a non-zero exit code that fails the step.
+        
+        ### 3. Publish test results
+        
+        To get visibility into the test execution, the results are published. 
+        
+        ### 4. Notify about test results
+        
+        Finally, a comment is posted on the pull request to notify about the test outcome:
+        
+        
+        This will post a message on Slack whenever a pull request is made. The `if: always()` ensures it runs even when the tests fail, so developers are notified.
+        
+        That concludes the CI workflow! It runs `varnishtest` to validate Varnish config changes and provides automated feedback through published test results and Slack notifications.
+        
+        Now let's look at implementing test cases with `varnishtest` in more detail.
+        
+        ## Writing `varnishtest` cases
+        
+        To get the most out of `varnishtest` for test driven infrastructure, it's important to understand how to write robust test cases.
+        
+        Some best practices for writing good `varnishtest` tests:
+        
+        Test a single use case
+        : Each test case should focus on one specific use case to make them short and maintainable.
+        
+        Validate expected behavior
+        : Use assertions to validate that Varnish responds as expected when hitting a test endpoint.
+        
+        Isolate test data
+        : Unique data should be used in each test case. This prevents cascading failures when a test pollutes Varnish state.
+        
+        Simulate edge conditions
+        : Write test cases for edge scenarios like cache expiration, failures, irregular input etc.
+        
+        Start simple
+        : Begin with a simple straight forward test and build from there. Don't make complex test cases from the start.
+        
+        Reuse test logic
+        : Create reusable test building blocks like helper functions for common test logic.
+        
+        Let's look at an example test case that implements these best practices.
+        
+        ### Cache control test
+        
+        Here is a `varnishtest` file that tests cache control behavior:
+        
+        ```text
+        varnish v1 -vcl+backend {
+        # VCL configuration
+        } -start
+        
+        varnish v2 -vcl+backend {
+        # VCL configuration
+        } -start
+        
+        backend b1 {
+        .host = &quot;test-backend&quot;;
+        } 
+        
+        backend b2 {
+        .host = &quot;test-backend&quot;;
+        }
+        
+        server s1 {
+        rxreq {
+        expect req.url == &quot;/test1&quot;
+        }
+        
+        txresp {
+        set resp.http.Cache-Control = &quot;public, max-age=10&quot;;
+        }
+        } -start
+        
+        vtc_begin_test {
+        txreq -url &quot;/test1&quot;
+        rxresp
+        expect resp.http.Cache-Control == &quot;public, max-age=10&quot;
+        } -run
+        
+        vtc_begin_test {
+        # Wait for cache to expire
+        sleep(11)
+        
+        txreq -url &quot;/test1&quot; 
+        rxresp
+        expect resp.http.Cache-Control == &quot;public, max-age=10&quot;
+        } -run
+        ```text
+        
+        It tests the following scenarios:
+        
+        Cacheable response
+        : The first test validates that the Cache-Control header is set to public with 10 second max-age.
+        
+        Cache expiration
+        : The second test waits 11 seconds so the cache expires and sends a new request to verify the Cache-Control header is still set.
+        
+        This is a focused test case that validates the cache control behavior with a simulated edge condition. The tests are isolated by the generated URL. And it uses the reusable `vtc_begin_test {}` helper.
+        
+        By following `varnishtest` best practices, robust test cases can be written to test drive infrastructure configuration delivery.
+        
+        ## Executing `varnishtest` in CI
+        
+        Now let's look at how to incorporate `varnishtest` in a CI/CD pipeline for automated testing. Here are some best practices when running `varnishtest` in CI:
+        
+        Install Varnish
+        : Use the same method of installing Varnish as is used to deploy Varnish to produciton. Also ensure that the same version is deployed as will be deployed in the same delivery cycle to production.
+        
+        Quiet mode
+        : Use the `-q` option for quieter test output without color coding and progress indicators. This eliminates spurious CI/CD job output that makes it hard for engineers to read when things go belly up.
+        
+        Fail fast
+        : Make sure to set the CI job fails if `varnishtest` returns a non-zero exit code.
+        
+        Parallelization
+        : The `-j` option allows running test cases in parallel to speed up execution. Be careful that your tests can be run in parallel from a correctness perspective. You might need to separate tests that can be run in parellel to run in one job and the sequential tests in another. These different jobs can then be run in paraellel as separate jobs.
+        
+        Artifacts
+        : Persist the `varnishtest` logs as an artifact to debug any failed tests.
+        
+        Smoke tests
+        : Have a fast running smoke test suite to quickly validate across PRs and commits. And a full regression suite for more thorough validation before merging PRs.
+        
+        ## Conclusion
+        
+        In this article, we looked at how to implement test driven infrastructure configurations with Varnish Cache and varnishtest:
+        
+        - Varnish Cache accelerates websites by caching content at the edge. Its exact behavior is determined by VCL configuration.
+        - `varnishtest` allows writing integration test cases that validate Varnish functionality and VCL logic.
+        - A CI/CD workflow with `varnishtest` testing provides automated feedback on infrastructure changes before deploying them.
+        - Following _best practices_ for writing `varnishtest` cases ensures robust test coverage.
+        
+        Adopting test driven infrastructure brings many benefits:
+        
+        - Reliable and rapid releases by testing infrastructure code upfront
+        - Prevent production defects by validating configurations
+        - Improved collaboration between developers and operations 
+        - Documentation of intended behavior through test cases
+        
+        As infrastructure as code practices grow, having the testing tools to validate these programmable configurations is key. Varnish Cache and `varnishtest` are great examples of how test driven infrastructure can be implemented for fast and robust delivery of infrastructure changes.
+        
+        ## References
+        
+        - [Varnish Cache](https://varnish-cache.org)
+        - [varnishtest](https://varnish-cache.org/docs/trunk/reference/varnishtest.html)
+        - [Varnish Configuration Language](https://varnish-cache.org/docs/trunk/users-guide/vcl.html)
+        </code></pre>
+        ]]>
+      </content:encoded>
+      <pubDate>Mon, 28 Aug 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application</title>
+      <link>http://localhost/blog/varnish-12-techniques/</link>
+      <guid isPermaLink="false">http://localhost/blog/varnish-12-techniques/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>As web applications grow in popularity, they often struggle to scale to meet increasing traffic demands. The application servers become overloaded, response times suffer, and the user experience deteriorates. Many sites turn to cache solutions like Varnish to improve performance and reduce load on their backends.</p>
+        <p>Varnish provides a caching HTTP reverse proxy that stores common responses in memory and serves those directly, bypassing application servers entirely for cached content. This greatly reduces the work required from the backend application servers. However, Varnish will only provide significant benefit if it can serve a high percentage of requests from cache - known as the hit rate.</p>
+        <p>Tuning Varnish appropriately is crucial to achieving a high hit rate. There are many techniques that can optimize Varnish to cache more content and keep it cached longer. With the right configuration, sites can often improve their hit rate from sub 50% to over 90%, with corresponding reductions in application server load.</p>
+        <p>This essay will explore 11 key optimization techniques to tune Varnish caching and attain high hit rates:</p>
+        <h2>1. Set Cache-Control Headers</h2>
+        <p>The Cache-Control header instructs caches how to handle content. It is one of the primary mechanisms for controlling cache behavior. Varnish looks at Cache-Control to determine if a response can be cached and for how long.</p>
+        <p>Backend applications should set the max-age directive appropriately in Cache-Control. This tells caches the maximum time they can reuse a response before revalidating it. Higher max-age values allow longer caching.</p>
+        <p>For example:</p>
+        <pre><code class="language-text">Cache-Control: max-age=3600
+        </code></pre>
+        <p>This caches the content for one hour before revalidating. Adjust max-age based on how frequently content changes. Use the longest duration that will maintain freshness.</p>
+        <p>Setting no-cache or no-store instead prevents caching entirely. And private indicates not to cache publicly shared caches like Varnish.</p>
+        <p>So proper use of Cache-Control is imperative to maximize Varnish hit rates.</p>
+        <h2>2. Adjust TTLs</h2>
+        <p>The TTL (Time To Live) determines the cache lifetime of an object in Varnish. After the TTL expires, caches are invalidated.</p>
+        <p>Varnish computes a TTL based on Cache-Control headers and other factors. But Varnish also allows manually overriding TTLs in VCL configuration.</p>
+        <p>For example:</p>
+        <pre><code class="language-text">sub vcl_backend_response {
+        if (bereq.url ~ &quot;^/legacy/&quot;) {
+        set beresp.ttl = 4h; 
+        }
+        }
+        </code></pre>
+        <p>This sets a 4 hour TTL for legacy application URLs that aren't cache-friendly. Overriding with longer TTLs where appropriate keeps more content cached longer.</p>
+        <p>But beware setting TTLs too long, which could serve stale content. Monitor cache invalidation rates and adjust accordingly.</p>
+        <h2>3. Enable Grace Mode</h2>
+        <p>Grace mode instructs Varnish to keep serving cached content for a period after it expires. This grace window prevents a &quot;thundering herd&quot; of requests from hitting backends all at once when caches invalidate.</p>
+        <p>For example:</p>
+        <pre><code class="language-text">sub vcl_backend_response {
+        set beresp.grace = 1h;
+        }
+        </code></pre>
+        <p>This allows serving cache for 1 hour past its TTL. The grace period allows time to fetch updated content in the background.</p>
+        <p>Grace mode dramatically avoids traffic spikes to backend. Set grace long enough to comfortably revalidate caches in background.</p>
+        <h2>4. Normalize Request Headers</h2>
+        <p>Varnish keeps separate cache versions for every variation of a request header. So a request with &quot;en-gb&quot; in Accept-Language gets a different cached response than &quot;en-us&quot;, even if the content is identical.</p>
+        <p>This cache fragmentation severely impacts hit rates. Normalizing headers combines these variations:</p>
+        <pre><code class="language-text">sub vcl_recv {
+        if (req.http.Accept-Language) {
+        set req.http.Accept-Language = &quot;en&quot;;
+        }
+        }
+        </code></pre>
+        <p>Now Varnish will treat all English language variants the same. Do this normalization for headers like Cookies, User-Agent, and Accept-Encoding too.</p>
+        <h2>5. Filter Cookies</h2>
+        <p>By default, Varnish caches nothing when request cookies are present, to avoid caching personalized content. This often hinders caching significantly.</p>
+        <p>But many cookies like analytics cookies don't impact cacheability. Filter out non-essential cookies:</p>
+        <pre><code class="language-text">sub vcl_recv {
+        if (!req.url ~ &quot;^/user/&quot;) {
+        unset req.http.Cookie;
+        }
+        }
+        </code></pre>
+        <p>Now only /user/ requests with session cookies bypass cache. Varnish will cache content for requests with filtered cookies.</p>
+        <p>Implement cookie filtering rules cautiously to avoid caching personalized content improperly. But huge gains are possible filtering non-essential cookies.</p>
+        <h2>6. Watch out for Vary</h2>
+        <p>The Vary header tells caches that responses differ based on specific request headers. This requires caching multiple variants.</p>
+        <p>For example:</p>
+        <pre><code class="language-text">Vary: User-Agent
+        </code></pre>
+        <p>This means Varnish must cache a separate copy for every observed User-Agent. Just the slightest difference in user agent strings leads to many redundant cache objects.</p>
+        <p>Ideally applications should not set Vary arbitrarily. But when they do, normalize the associated request headers, just like #4. Otherwise cache efficiency suffers drastically.</p>
+        <h2>7. Handle Uncacheable Content</h2>
+        <p>Not all content can be cached, like dynamic or personalized data. But we still want an efficient caching strategy for uncacheable content.</p>
+        <p>Use hit-for-pass configuration to indicate certain requests always pass to backend. For example:</p>
+        <pre><code class="language-text">sub vcl_recv {
+        if (req.url ~ &quot;^/api/&quot;) {
+        return(pass);
+        }
+        }
+        </code></pre>
+        <p>Now /api/ requests that can't be cached will completely bypass cache. Varnish won't waste any effort caching responses marked uncacheable.</p>
+        <p>It's also possible to configure hit-for-miss caching for content like responses with cookies that become cacheable later. This eases transition to cacheable.</p>
+        <h2>8. Offload Static Assets</h2>
+        <p>Static assets like images, CSS and JS don't benefit from caching in Varnish - they never change. But storing them in Varnish wastes precious cache space.</p>
+        <p>Offload static assets to a cookieless domain like static.example.com. Configure this domain to skip Varnish and hit backend servers directly. Varnish no longer wastes space storing static content.</p>
+        <p>For dynamic content, redirect static asset references to the static domain. This improves cache efficiency tremendously.</p>
+        <h2>9. Limit Crawl Rate</h2>
+        <p>Aggressive crawlers can wreck havoc on caches by slamming backends when caches inevitably expire.</p>
+        <p>Use Varnish's rate limiting capabilities to restrict crawling activity. For example:</p>
+        <pre><code class="language-text">sub vcl_recv {
+        if (req.http.User-Agent ~ &quot;bot&quot;) {
+        set req.http.X-Varnish-Rate = &quot;5r/s&quot;;
+        }
+        }
+        </code></pre>
+        <p>This limits crawlers to 5 requests per second. Configure rate limits wisely to find balance between crawl needs and capacity.</p>
+        <h2>10. Purge Content</h2>
+        <p>When content changes, caches need to be purged so new content is fetched. Use Varnish's PURGE requests to actively invalidate content.</p>
+        <p>For example, when a post is updated:</p>
+        <pre><code class="language-text">PURGE /blog/post/123
+        </code></pre>
+        <p>This immediately invalidates the old post so new content is cached on next request.</p>
+        <p>Strategically purging cache proactively keeps content fresh rather than waiting for TTLs to slowly expire stale content.</p>
+        <h2>11. Monitor Performance</h2>
+        <p>Continuously monitor key metrics to tune Varnish. varnishstat provides great visibility:</p>
+        <ul>
+        <li>hit rate percentage - target over 90%</li>
+        <li>cache miss ratio - aim for under 1:100</li>
+        <li>backend requests - minimize these to ease load</li>
+        <li>object bloat - trim down needlessly cached content</li>
+        </ul>
+        <p>Monitor these metrics on an ongoing basis and optimize configurations to gradually improve. Don't forget, incremental gains add up over time!</p>
+        <h2>Conclusion</h2>
+        <p>Achieving high hit rates with Varnish requires continual optimization. Implementing techniques like the 12 covered in this essay can drastically boost performance. Sites often see hit rate gains of 40% or more with appropriate tuning.</p>
+        <p>The savings in backend load, traffic costs and latency benefits hugely impact overall application user experience as traffic scales up. The difference between a 50% cache hit rate and 90% is tremendous in actual capacity.</p>
+        <p>But attaining those high hit rates involves trade offs in complexity and maintenance. There is no &quot;one size fits all&quot; configuration. Each application's needs and content require custom optimization.</p>
+        <p>Careful tuning and diligent monitoring is an iterative process. Work through these caching techniques step-by-step to improve Varnish response times and reduce that load off struggling backends. The effort is well worth the substantial gains in site performance and scalability that result from making the most of Varnish caching capabilities.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sun, 27 Aug 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Autothrottle: Manage Resources for SLO-Targeted Microservices</title>
+      <link>http://localhost/blog/autothrottle-resource-management-for-microservices/</link>
+      <guid isPermaLink="false">http://localhost/blog/autothrottle-resource-management-for-microservices/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Microservices have become a popular architecture paradigm, providing benefits like independent scaling and modularity. However, operating and maintaining microservices introduces challenges around efficiently managing resources to provide good user experience within cost constraints.</p>
+        <p>This paper presents an intriguing bi-level control approach called Autothrottle that decouples application-level SLO monitoring from service-level resource controllers. The notion of a CPU throttle-based performance target is quite exciting, as it provides a way to bridge these levels. Platform engineers may find several practical takeaways from this paper when managing microservices.</p>
+        <h2>Practical Takeaways for Practitioners</h2>
+        <ul>
+        <li>The bi-level structure aligns well with aggregating metrics at the application level while collecting per-service metrics. This incremental observability is useful.</li>
+        <li>Tracking CPU throttling events can help set alerts and monitor service health. Throttling often indicates problems.</li>
+        <li>The online learning algorithm for autoscaling is handy for capacity planning using production traffic data.</li>
+        <li>The rapid feedback control and rollback mechanisms inform techniques for incident response.</li>
+        <li>Load testing microservices while correlating with metrics helps test observability.</li>
+        <li>The techniques could extend beyond CPU to memory, IO, network for holistic resource management.</li>
+        <li>The modular design enables gains without full end-to-end traces. Failures in one service are mitigated by others.</li>
+        <li>Integration with Kubernetes operators would be valuable for microservice deployments.</li>
+        </ul>
+        <h2>Summary</h2>
+        <p>The paper presents a practical bi-level resource management approach for microservices. The key takeaway for platform engineers is the value of incremental observability wins from decoupled monitoring and control. Tracking emerging proxy metrics like CPU throttling provides alerts for potential problems. And online learning algorithms lend themselves to continuous improvement of autoscaling policies.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Fri, 18 Aug 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>HTTP Load Balancing with NGINX</title>
+      <link>http://localhost/blog/nginx-http-load-balancing/</link>
+      <guid isPermaLink="false">http://localhost/blog/nginx-http-load-balancing/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>For the last twelve years, I have been using NGINX to provide load balancing solutions for web applications. In this post I wanted to document ways of setting up HTTP load balancing via NGINX and some common considerations you should make with your web application needs in mind. By the end of this post, you should have a good understanding of how to use NGINX to easily distribute requests across multiple servers for many cases. However, if you are having a hard time figuring out in an evidence backed method the most effective approach for your web application feel free to explore <a href="http://localhost/#plans">our plans which you can pause at any time</a> between available work.</p>
+        <p>Load balancing is one of those unsung hero techniques that keeps the internet running smoothly. The goal is simple - take incoming requests and spread them evenly across a group of servers. But the benefits are huge:</p>
+        <ul>
+        <li>Improve resource utilization by removing idle servers and overworked servers.</li>
+        <li>Maximize throughput by allowing more requests to be handled at once.</li>
+        <li>Reduce latency by routing each request to the server that can respond the quickest.</li>
+        <li>Ensure fault tolerance by quickly shifting traffic away from unhealthy servers.</li>
+        </ul>
+        <p>NGINX is a popular open source web server that also excels as a load balancer. It's blazingly fast, highly customizable, and capable of handling enormous loads with minimal resource usage.</p>
+        <p>Here we'll cover the core load balancing techniques offered by NGINX. I'll explain each concept in simple terms with easy-to-understand examples. My goal is to provide a friendly introduction to get you load balancing like a pro!</p>
+        <h2>Load Balancing Basics</h2>
+        <p>Before diving into NGINX specifics, let's quickly distinguish between Layer 4 and Layer 7 load balancing. These terms refer to different levels of the OSI networking model:</p>
+        <ul>
+        <li>Layer 4 load balancers work at the transport layer, looking only at IP addresses and ports. They balance incoming TCP connections across backend servers.</li>
+        <li>Layer 7 load balancers work at the application layer, looking at HTTP headers and content. They route complete HTTP requests to backends.
+        Layer 4 load balancing requires less processing overhead, so it can handle more throughput. But Layer 7 provides more flexibility to control how requests are distributed.</li>
+        </ul>
+        <p>NGINX can do both Layer 4 and Layer 7 balancing, but we'll focus on Layer 7 HTTP load balancing in this guide. HTTP is slower but offers advanced traffic control for modern web applications.</p>
+        <p>Now that we've got the basics down, let's look at configuring HTTP load balancing with NGINX!</p>
+        <h2>HTTP Load Balancing with NGINX</h2>
+        <p>The first step is to create an upstream block describing our group of backend servers:</p>
+        <pre><code class="language-nginx">http {
+        upstream myapp {
+        server app1.example.com;
+        server app2.example.com;
+        server app3.example.com; 
+        }
+        }
+        </code></pre>
+        <p>This block is named &quot;myapp&quot; and contains three backend servers. We can reference this group from any NGINX virtual server blocks that need to load balance requests.</p>
+        <p>NGINX will distribute requests to these servers in <em>round robin</em> fashion by default. Each server gets an equal number of requests sent its way though the load distribution incurred by each request may be uneven across nodes.</p>
+        <p><img src="http://localhost/images/blog-nginx-round-robin-flow.webp" alt="&quot;Round robin flow&quot;"></p>
+        <p>But we can easily change the distribution method to suit our needs. Here are some other algorithms NGINX supports:</p>
+        <dl>
+        <dt>Least Connections</dt>
+        <dd>Send each request to the backend server with the least number of active connections. Great for balancing uneven loads.</dd>
+        </dl>
+        <p><img src="http://localhost/images/blog-nginx-least-connections-flow.webp" alt="&quot;Least Connections flow&quot;"></p>
+        <dl>
+        <dt>IP Hash</dt>
+        <dd>Hash the client IP to always pick the same backend server. Useful for session persistence.</dd>
+        </dl>
+        <p><img src="http://localhost/images/blog-nginx-ip-hash-flow.webp" alt="&quot;IP Hash flow&quot;"></p>
+        <dl>
+        <dt>Generic Hash</dt>
+        <dd>Hash a custom key to select the backend server. Allows advanced traffic shaping.</dd>
+        </dl>
+        <p><img src="http://localhost/images/blog-nginx-cookie-hash-flow.webp" alt="&quot;Hash flow&quot;"></p>
+        <dl>
+        <dt>Random</dt>
+        <dd>Select a random backend server for each request. Improves cache utilization with multiple load balancers.</dd>
+        </dl>
+        <p>The possibilities are endless! And we've barely scratched the surface of NGINX's flexible load balancing capabilities.</p>
+        <p>Now let's look at controlling the proportion of requests allocated to each server. The <strong>weight</strong> parameter lets us bias distribution towards certain backends:</p>
+        <pre><code class="language-nginx">upstream myapp {
+        server app1.example.com weight=3;
+        server app2.example.com;
+        server app3.example.com;
+        }
+        </code></pre>
+        <p>Here app1 will receive 3x as many requests as the other two servers. Weight values are relative, so we can achieve different distributions like 2:1:1 or 1:2:5 easily.</p>
+        <p>Session persistence is another common requirement, so the client keeps connecting to the same backend during their session. NGINX provides a simple <strong>sticky cookie</strong> method:</p>
+        <pre><code class="language-nginx">upstream myapp {
+        sticky cookie srv_id expires=1h domain=.mydomain.com path=/;
+        
+        server app1.example.com;
+        server app2.example.com;
+        }
+        </code></pre>
+        <p>The first backend server to receive a request from a client will set the &quot;srv_id&quot; cookie, mapping the session to itself. Future requests will read this cookie and return to the original backend. Perfect for shopping carts and user sessions!</p>
+        <h2>Health Checks</h2>
+        <p>Of course, servers sometimes fail. NGINX provides passive health checks to gracefully handle outages.</p>
+        <p>The <strong>max_fails</strong> and <strong>fail_timeout</strong> parameters control when a server is marked down:</p>
+        <pre><code class="language-nginx">upstream myapp {
+        server app1.example.com max_fails=2 fail_timeout=30s;
+        server app2.example.com;
+        server app3.example.com; 
+        }
+        </code></pre>
+        <p>Here app1 will be considered unhealthy after 2 failures within 30 seconds. NGINX will stop sending it requests until it recovers.</p>
+        <p>We can also gradually ramp up traffic to a server that was marked down, using the <strong>slow_start</strong> parameter:</p>
+        <pre><code class="language-nginx">upstream myapp {
+        server app1.example.com slow_start=30s;
+        server app2.example.com;
+        server app3.example.com;
+        } 
+        </code></pre>
+        <p>Now app1 will take 30 seconds to warm up when recovering before handling full production loads. This prevents it from being overwhelmed.</p>
+        <h2>DNS-Based Load Balancing</h2>
+        <p>Manually keeping the upstream block in sync with backend servers is tedious. Instead, we can use DNS to automatically provide NGINX with the current backend IP addresses.</p>
+        <p>First, configure DNS resolution:</p>
+        <pre><code class="language-nginx">http {
+        resolver 10.0.0.2 valid=300s; 
+        
+        upstream myapp {
+        zone myapp 64k;
+        server backend1.example.com resolve;
+        server backend2.example.com resolve;
+        }
+        }
+        </code></pre>
+        <p>The <strong>resolver</strong> directive points NGINX at our DNS server. Each <strong>server</strong> entry has the <strong>resolve</strong> parameter set.</p>
+        <p>Now when the DNS record for backend1/2 changes, NGINX will automatically apply the updated IP address list for load balancing. No restarts or reconfigs needed!</p>
+        <h2>Health Checks In-Depth</h2>
+        <p>Now that we've covered the fundamentals, let's do a quick deep dive on health checks.</p>
+        <p>We discussed passive health checks earlier - NGINX silently monitors backend connections and marks down servers when failures exceed the <strong>max_fails</strong> threshold.</p>
+        <p>For a more active approach, external tools like Consul or Pingdom can explicitly probe each backend and provide health status back to NGINX. This gives us more visibility and control compared to passive monitoring.</p>
+        <p>When integrating NGINX with active health checks, the <strong>slow_start</strong> parameter is invaluable:</p>
+        <pre><code class="language-nginx">upstream myapp {
+        server app1.example.com slow_start=30s;
+        server app2.example.com;
+        server app3.example.com;
+        }
+        </code></pre>
+        <p>By gradually ramping up traffic to newly recovered servers, we protect them from being overwhelmed by a flood of connections.</p>
+        <p>Overall, a combination of passive and active checks provides the best reliability and visibility. NGINX handles passive checks automatically, while external tools give deeper health insight with custom probes.</p>
+        <h2>Best Practices</h2>
+        <p>We've covered a ton of ground already! To wrap up, here are some key tips for load balancing success:</p>
+        <ul>
+        <li>Monitor key backend metrics - requests/sec, latency, errors. Identify unhealthy servers early.</li>
+        <li>Tune health check intervals and thresholds for your app. Aggressive checks can degrade performance.</li>
+        <li>Use an auto scaling group with multiple backend AMIs. NGINX can automatically scale up.</li>
+        <li>Regularly test failover by disabling backends. Validate the system dynamically adapts.</li>
+        <li>Implement DNS-based server changes or an API for backend management. Automate everything!</li>
+        <li>There is no one-size-fits-all solution. Experiment with different combinations of methods based on your traffic patterns.</li>
+        <li>Continuously inspect metrics and logs for improvements. Load balancing is a recursive optimization problem.</li>
+        </ul>
+        <h2>Load Balancing Techniques Comparison</h2>
+        <table>
+        <thead>
+        <tr>
+        <th>Method</th>
+        <th>Key Benefit</th>
+        <th>Key Drawback</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Round Robin</td>
+        <td>Simple, equal distribution</td>
+        <td>Can overload servers with uneven request types</td>
+        </tr>
+        <tr>
+        <td>Least Connections</td>
+        <td>Adapts to uneven loads</td>
+        <td>More state overhead</td>
+        </tr>
+        <tr>
+        <td>IP Hash</td>
+        <td>Session persistence</td>
+        <td>Uneven if sessions differ</td>
+        </tr>
+        <tr>
+        <td>Cookie Hash</td>
+        <td>Persistence without state</td>
+        <td>Extra latency from hashing</td>
+        </tr>
+        <tr>
+        <td>Health Checks</td>
+        <td>Fast failure detection</td>
+        <td>Complex behaviors while flapping or brown outs</td>
+        </tr>
+        <tr>
+        <td>DNS Load Balancing</td>
+        <td>Dynamic config</td>
+        <td>DNS dependency</td>
+        </tr>
+        </tbody>
+        </table>
+        <p>Congratulations, you made it! You now understand the core considerations for load balancing with NGINX. The concepts are easy, but the combinations can get complex for large scale web apps.</p>
+        <p>The great part is NGINX gives you simple building blocks that you can start combining using your own creative problem-solving. Keep iterating and improving based on data, and you will be a load balancing pro in no time!</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Mon, 31 Jul 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Open Source Software Supply Chain Attacks Review</title>
+      <link>http://localhost/blog/open-source-software-supply-chain-attacks-review/</link>
+      <guid isPermaLink="false">http://localhost/blog/open-source-software-supply-chain-attacks-review/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Last month in Lecture Notes in Computer Science, vol 12223, Ohm, Plate, Sykosch and Meier published
+        <a href="https://link.springer.com/chapter/10.1007/978-3-030-52683-2_2">Backstabber’s Knife Collection: A Review of Open Source Software Supply Chain Attacks</a>.</p>
+        <p>As a keen practitioner of improving software supply chains for Referential Labs' customers, I immediately pounced on the chapter. Here are seven key takeaways from the article with respect to advice to reduce software supply chain vulnerabilities:</p>
+        <ul>
+        <li>Software supply chain attacks are increasing, exploiting vulnerabilities in third-party components integrated into applications. This highlights the need for better software supply chain security practices.</li>
+        <li>Know your dependencies - Maintain a comprehensive inventory of all third-party libraries, modules, and components used. Monitor them for vulnerabilities.</li>
+        <li>Perform thorough due diligence on suppliers and third-party code before integrating into your software. Assess their security practices.</li>
+        <li>Prioritize applying security updates for vulnerable dependencies quickly. Have processes to expedite patching.</li>
+        <li>Use dependency analysis tools to detect vulnerabilities in third-party code and enforce open source policies. Integrate into build process.</li>
+        <li>Validate integrity of dependencies downloaded. Use curated repositories and registries you trust.</li>
+        <li>Utilize dependency graphs to analyze risk exposure from transitive dependencies. Remove unnecessary dependencies.</li>
+        <li>Implement software integrity controls like reproducible builds to detect tampering. Sign code at build time.</li>
+        <li>Monitor emerging threats to third-party code and have response plans to address vulnerabilities rapidly.</li>
+        <li>Adopt DevSecOps model to make security a shared responsibility between developers, ops, and security teams.</li>
+        </ul>
+        <h2>What on earth is DevSecOps?</h2>
+        <p>In the context of improving software supply chain security, DevSecOps:</p>
+        <ul>
+        <li>integrates security practices throughout the software development lifecycle, bringing security closer to developers and development workflows.</li>
+        <li>has Security teams provide guardrails, tools, and automation to help developers build in security rather than relying solely on retroactive audits.</li>
+        <li>includes Security team members early in requirements gathering to identify risks. Threat modeling is performed on designs.</li>
+        <li>integrates static and dynamic analysis tools into builds to catch vulnerabilities and misconfigurations early.</li>
+        <li>embeds good security defaults into Infrastructure as code and policy as code and automate provisioning and configuration of environments leveraging these.</li>
+        <li>integrates security testing into CI/CD pipelines to validate controls and catch regressions.</li>
+        <li>monitors for drift and anomalies during runtime can identify supply chain attacks in progress.</li>
+        <li>focus security teams efforts on providing enablement, guidance and oversight rather than enforcement.</li>
+        <li>increases collaboration between development, security, and operations using a shared responsibility model.</li>
+        <li>integrates security into developer workflows helps to reduce friction and improve outcomes and automate policy enforcement.</li>
+        </ul>
+        <p>The main goal of <strong>DevSecOps</strong> is to make building secure software an integral part of daily work for developers rather than an afterthought. It results in more secure software supply chains.</p>
+        <p>Is your small organization struggling to build in security? With our DevSecOps subscription service, you get the expertise and bandwidth that you need to securely develop software without compromising speed or quality.</p>
+        <p>With DevSecOps as a Service, you’ll be releasing more robust code more frequently. Tighten up your software supply chain security with the guiding hand of our DevSecOps expertise and experience behind you.</p>
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+        {
+        "@type": "Question",
+        "name": "What is DevSecOps?",
+        "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DevSecOps integrates security practices into the DevOps workflow by bringing security closer to developers and automating security policy enforcement. It embeds security earlier into software delivery and aims to make building secure software an inherent part of daily work for development teams."
+        }
+        }
+        ]
+        }
+        </script>
+        ]]>
+      </content:encoded>
+      <pubDate>Wed, 12 Aug 2020 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
