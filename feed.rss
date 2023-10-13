@@ -2,16 +2,16 @@
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
   <channel>
     <title/>
-    <link>http://localhost/</link>
-    <atom:link href="http://localhost/feed.rss" rel="self" type="application/rss+xml"/>
+    <link>https://referentiallabs.com/</link>
+    <atom:link href="https://referentiallabs.com/feed.rss" rel="self" type="application/rss+xml"/>
     <description/>
-    <lastBuildDate>Thu, 12 Oct 2023 12:16:45 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 13 Oct 2023 23:18:50 GMT</lastBuildDate>
     <language>en</language>
     <generator>Lume v1.18.5</generator>
     <item>
       <title>API-First Development</title>
-      <link>http://localhost/blog/api-first-development/</link>
-      <guid isPermaLink="false">http://localhost/blog/api-first-development/</guid>
+      <link>https://referentiallabs.com/blog/api-first-development/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/api-first-development/</guid>
       <description/>
       <content:encoded>
         <![CDATA[<p>APIs have become the core building blocks of modern software applications. Taking an API-first approach, where APIs are designed upfront before implementation, can provide immense benefits for enterprise architecture. This white paper explores API-first development - its concepts, benefits, challenges and best practices - to enable SaaS teams to build scalable and flexible platforms.</p>
@@ -103,8 +103,8 @@
     </item>
     <item>
       <title>From VPNs to Zero Trust</title>
-      <link>http://localhost/blog/vpns-to-zero-trust/</link>
-      <guid isPermaLink="false">http://localhost/blog/vpns-to-zero-trust/</guid>
+      <link>https://referentiallabs.com/blog/vpns-to-zero-trust/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/vpns-to-zero-trust/</guid>
       <description/>
       <content:encoded>
         <![CDATA[<p>Over the past two decades, corporate network security has undergone a dramatic evolution. What began as a perimeter model based on VPNs and firewalls has gradually transitioned into the emerging zero trust paradigm. This evolution has been driven by advances in technology, the rise of the cloud and distributed workforces.</p>
@@ -288,8 +288,8 @@
     </item>
     <item>
       <title>Test Driven Infrastructure Configs with varnishtest</title>
-      <link>http://localhost/blog/varnishtest/</link>
-      <guid isPermaLink="false">http://localhost/blog/varnishtest/</guid>
+      <link>https://referentiallabs.com/blog/varnishtest/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/varnishtest/</guid>
       <description/>
       <content:encoded>
         <![CDATA[<p>Infrastructure as code and continuous integration/continuous delivery (CI/CD) pipelines are becoming the norm for delivering software applications. By codifying infrastructure and leveraging automation, organizations can release changes faster and with more reliability.</p>
@@ -577,8 +577,8 @@
     </item>
     <item>
       <title>11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application</title>
-      <link>http://localhost/blog/varnish-12-techniques/</link>
-      <guid isPermaLink="false">http://localhost/blog/varnish-12-techniques/</guid>
+      <link>https://referentiallabs.com/blog/varnish-12-techniques/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/varnish-12-techniques/</guid>
       <description/>
       <content:encoded>
         <![CDATA[<p>As web applications grow in popularity, they often struggle to scale to meet increasing traffic demands. The application servers become overloaded, response times suffer, and the user experience deteriorates. Many sites turn to cache solutions like Varnish to improve performance and reduce load on their backends.</p>
@@ -695,8 +695,8 @@
     </item>
     <item>
       <title>Autothrottle: Manage Resources for SLO-Targeted Microservices</title>
-      <link>http://localhost/blog/autothrottle-resource-management-for-microservices/</link>
-      <guid isPermaLink="false">http://localhost/blog/autothrottle-resource-management-for-microservices/</guid>
+      <link>https://referentiallabs.com/blog/autothrottle-resource-management-for-microservices/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/autothrottle-resource-management-for-microservices/</guid>
       <description/>
       <content:encoded>
         <![CDATA[<p>Microservices have become a popular architecture paradigm, providing benefits like independent scaling and modularity. However, operating and maintaining microservices introduces challenges around efficiently managing resources to provide good user experience within cost constraints.</p>
@@ -720,11 +720,11 @@
     </item>
     <item>
       <title>HTTP Load Balancing with NGINX</title>
-      <link>http://localhost/blog/nginx-http-load-balancing/</link>
-      <guid isPermaLink="false">http://localhost/blog/nginx-http-load-balancing/</guid>
+      <link>https://referentiallabs.com/blog/nginx-http-load-balancing/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/nginx-http-load-balancing/</guid>
       <description/>
       <content:encoded>
-        <![CDATA[<p>For the last twelve years, I have been using NGINX to provide load balancing solutions for web applications. In this post I wanted to document ways of setting up HTTP load balancing via NGINX and some common considerations you should make with your web application needs in mind. By the end of this post, you should have a good understanding of how to use NGINX to easily distribute requests across multiple servers for many cases. However, if you are having a hard time figuring out in an evidence backed method the most effective approach for your web application feel free to explore <a href="http://localhost/#plans">our plans which you can pause at any time</a> between available work.</p>
+        <![CDATA[<p>For the last twelve years, I have been using NGINX to provide load balancing solutions for web applications. In this post I wanted to document ways of setting up HTTP load balancing via NGINX and some common considerations you should make with your web application needs in mind. By the end of this post, you should have a good understanding of how to use NGINX to easily distribute requests across multiple servers for many cases. However, if you are having a hard time figuring out in an evidence backed method the most effective approach for your web application feel free to explore <a href="https://referentiallabs.com/#plans">our plans which you can pause at any time</a> between available work.</p>
         <p>Load balancing is one of those unsung hero techniques that keeps the internet running smoothly. The goal is simple - take incoming requests and spread them evenly across a group of servers. But the benefits are huge:</p>
         <ul>
         <li>Improve resource utilization by removing idle servers and overworked servers.</li>
@@ -755,23 +755,23 @@
         </code></pre>
         <p>This block is named &quot;myapp&quot; and contains three backend servers. We can reference this group from any NGINX virtual server blocks that need to load balance requests.</p>
         <p>NGINX will distribute requests to these servers in <em>round robin</em> fashion by default. Each server gets an equal number of requests sent its way though the load distribution incurred by each request may be uneven across nodes.</p>
-        <p><img src="http://localhost/images/blog-nginx-round-robin-flow.webp" alt="&quot;Round robin flow&quot;"></p>
+        <p><img src="https://referentiallabs.com/images/blog-nginx-round-robin-flow.webp" alt="&quot;Round robin flow&quot;"></p>
         <p>But we can easily change the distribution method to suit our needs. Here are some other algorithms NGINX supports:</p>
         <dl>
         <dt>Least Connections</dt>
         <dd>Send each request to the backend server with the least number of active connections. Great for balancing uneven loads.</dd>
         </dl>
-        <p><img src="http://localhost/images/blog-nginx-least-connections-flow.webp" alt="&quot;Least Connections flow&quot;"></p>
+        <p><img src="https://referentiallabs.com/images/blog-nginx-least-connections-flow.webp" alt="&quot;Least Connections flow&quot;"></p>
         <dl>
         <dt>IP Hash</dt>
         <dd>Hash the client IP to always pick the same backend server. Useful for session persistence.</dd>
         </dl>
-        <p><img src="http://localhost/images/blog-nginx-ip-hash-flow.webp" alt="&quot;IP Hash flow&quot;"></p>
+        <p><img src="https://referentiallabs.com/images/blog-nginx-ip-hash-flow.webp" alt="&quot;IP Hash flow&quot;"></p>
         <dl>
         <dt>Generic Hash</dt>
         <dd>Hash a custom key to select the backend server. Allows advanced traffic shaping.</dd>
         </dl>
-        <p><img src="http://localhost/images/blog-nginx-cookie-hash-flow.webp" alt="&quot;Hash flow&quot;"></p>
+        <p><img src="https://referentiallabs.com/images/blog-nginx-cookie-hash-flow.webp" alt="&quot;Hash flow&quot;"></p>
         <dl>
         <dt>Random</dt>
         <dd>Select a random backend server for each request. Improves cache utilization with multiple load balancers.</dd>
@@ -901,8 +901,8 @@
     </item>
     <item>
       <title>Open Source Software Supply Chain Attacks Review</title>
-      <link>http://localhost/blog/open-source-software-supply-chain-attacks-review/</link>
-      <guid isPermaLink="false">http://localhost/blog/open-source-software-supply-chain-attacks-review/</guid>
+      <link>https://referentiallabs.com/blog/open-source-software-supply-chain-attacks-review/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/open-source-software-supply-chain-attacks-review/</guid>
       <description/>
       <content:encoded>
         <![CDATA[<p>Last month in Lecture Notes in Computer Science, vol 12223, Ohm, Plate, Sykosch and Meier published

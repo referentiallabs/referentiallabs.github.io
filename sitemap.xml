@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost/</loc>
+    <loc>https://referentiallabs.com/</loc>
     <lastmod>2023-07-15T21:46:56.263Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/</loc>
+    <loc>https://referentiallabs.com/blog/</loc>
     <lastmod>2023-08-18T17:10:23.602Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/api-first-development/</loc>
+    <loc>https://referentiallabs.com/blog/api-first-development/</loc>
     <lastmod>2023-09-28T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/autothrottle-resource-management-for-microservices/</loc>
+    <loc>https://referentiallabs.com/blog/autothrottle-resource-management-for-microservices/</loc>
     <lastmod>2023-08-18T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/nginx-http-load-balancing/</loc>
+    <loc>https://referentiallabs.com/blog/nginx-http-load-balancing/</loc>
     <lastmod>2023-07-31T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/open-source-software-supply-chain-attacks-review/</loc>
+    <loc>https://referentiallabs.com/blog/open-source-software-supply-chain-attacks-review/</loc>
     <lastmod>2020-08-12T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/varnish-12-techniques/</loc>
+    <loc>https://referentiallabs.com/blog/varnish-12-techniques/</loc>
     <lastmod>2023-08-27T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/varnishtest/</loc>
+    <loc>https://referentiallabs.com/blog/varnishtest/</loc>
     <lastmod>2023-08-28T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/blog/vpns-to-zero-trust/</loc>
+    <loc>https://referentiallabs.com/blog/vpns-to-zero-trust/</loc>
     <lastmod>2023-09-21T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/contact/</loc>
+    <loc>https://referentiallabs.com/contact/</loc>
     <lastmod>2023-10-10T03:04:44.425Z</lastmod>
   </url>
 </urlset>
