@@ -5,16 +5,278 @@
     <link>https://referentiallabs.com/</link>
     <atom:link href="https://referentiallabs.com/feed.rss" rel="self" type="application/rss+xml"/>
     <description/>
-    <lastBuildDate>Fri, 13 Oct 2023 23:18:50 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 21 Oct 2023 19:32:39 GMT</lastBuildDate>
     <language>en</language>
     <generator>Lume v1.18.5</generator>
     <item>
-      <title>API-First Development</title>
+      <title>The Benefits of Consumer Contract Driven Testing for REST APIs</title>
+      <link>https://referentiallabs.com/blog/consumer-contract-driven-testing-apis/</link>
+      <guid isPermaLink="false">https://referentiallabs.com/blog/consumer-contract-driven-testing-apis/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Molasses Corp has over 100 different services that communicate via REST APIs. As the company grew, managing end-to-end integration tests became a nightmare. With multiple languages and frameworks, tests took hours to run and were flaky. The testing burden slowed down development for the entire organization.</p>
+        <p>When a backend team refactored a core service, they inadvertently broke downstream applications. Because end-to-end tests took so long to run, the issues weren't caught immediately. The outages were expensive both in terms of revenue and reputation for Molasses Corp.</p>
+        <p>To address these issues, Molasses adopted consumer contract driven testing (CCDT) which focuses on verifying integration contracts. By generating test SDKs from provider API definitions and running fast contract verification tests, issues are found within minutes versus hours or days. In fact, it changed the culture at Molasses Corp so much that they renamed their company to Warp Speed Ltd.</p>
+        <p>This story was fictionalized to protect the innocent but this is an all too familiar scenario that plays out across software enterprises. A familiar story such that the engineers at Referential Labs have helped multiple teams and organizations turn around their software delivery feedback cycles using techniques like CCDT.</p>
+        <p>In this article, we explain the benefits of CCDT that companies like Molasses Corp (now Warp Speed Ltd) realize when scaling complex microservices architectures. Here we will cover:</p>
+        <ul>
+        <li>background on the consumer-provider model in REST APIs</li>
+        <li>the core concepts of CCDT</li>
+        <li>the pros and cons of implementing CCDT</li>
+        <li>best practices for adopting CCDT in your organization's REST API testing strategy</li>
+        </ul>
+        <p>Continue reading to learn how to release APIs to external users with measured confidence that contracts are not violated.</p>
+        <h2>API Contracts</h2>
+        <p>A key to smooth integration between API consumers and providers is a defined contract. The contract specifies the interface between the services including endpoints, request/response formats, and more.</p>
+        <p>There are two types of contracts in CCDT:</p>
+        <ul>
+        <li><strong>Consumer Contract</strong> - Defines the schema and endpoints that a consumer expects from a provider API.</li>
+        <li><strong>Provider Contract</strong> - Defines the schema and endpoints that a provider guarantees to implement for consumers.</li>
+        </ul>
+        <p>For example, consider a provider API with the following OpenAPI contract:</p>
+        <pre><code class="language-yaml">openapi: 3.0.0
+        servers:
+        - url: https://api.server.com
+        
+        paths:
+        /users/{id}:
+        get:
+        parameters:
+        - name: id
+        in: path
+        required: true
+        schema:
+        type: integer
+        responses:
+        '200':
+        description: User response
+        content:
+        application/json:    
+        schema:
+        type: object
+        properties:
+        name: 
+        type: string
+        email:
+        type: string
+        </code></pre>
+        <p>This contract defines the <code>/users/{id}</code> endpoint along with the request parameters and response format the provider guarantees to implement. The consumer contract would define what endpoints and schemas the consumer expects to utilize.</p>
+        <p>The provider OpenAPI contract above defines a <code>GET /users/{id}</code> endpoint for retrieving user data. Let's look at how this can be utilized in a consumer integration:</p>
+        <h3>Consumer Contract</h3>
+        <p>The consumer generates a client SDK from the OpenAPI contract to call the provider API. The SDK allows making requests and validating responses based on the contract.</p>
+        <pre><code class="language-javascript">// Generated SDK code
+        
+        const api = new ProviderAPI({url: 'https://api.server.com'}) 
+        
+        async function getUser(id) {
+        
+        const response = await api.users.get({id});
+        
+        // Validate response matches schema
+        response.validate();
+        
+        return response.data;
+        }
+        </code></pre>
+        <p>The consumer relies on the SDK to automatically handle serialization, requests, and response validation based on the provider contract.</p>
+        <h3>Provider Implementation</h3>
+        <p>The provider implements the API endpoints and business logic:</p>
+        <pre><code class="language-javascript">// Provider code
+        
+        app.get('/users/:id', (req, res) =&gt; {
+        
+        const user = db.findUser(req.params.id);
+        
+        return res.status(200).json(user); 
+        });
+        </code></pre>
+        <h3>Contract Verification</h3>
+        <p>CCDT validates that the provider's implementation meets the contract. Example using a test validation server:</p>
+        <pre><code class="language-text">POST /validate
+        
+        {
+        &quot;request&quot;: {
+        &quot;method&quot;: &quot;GET&quot;, 
+        &quot;path&quot;: &quot;/users/123&quot;
+        },
+        
+        &quot;response&quot;: {
+        &quot;status&quot;: 200,
+        &quot;body&quot;: {
+        &quot;name&quot;: &quot;John Doe&quot;,
+        &quot;email&quot;: &quot;john@doe.com&quot;  
+        }
+        }
+        }
+        
+        // Assertion - response matches schema
+        </code></pre>
+        <p>This validation ensures the provider meets the consumer's expectations.</p>
+        <h2>Contract Mismatches</h2>
+        <p>A contract mismatch occurs when the actual payload sent between a consumer and provider no longer matches the defined contract. Mismatches lead to integrations breaking when contracts fall out of sync.</p>
+        <p>Let's say, Company X recently launched a new partner integration consuming a vendor's API. A month after launch, the vendor added a new required <code>&quot;id_code&quot;</code> field to API requests. But Company X's integration was not updated to handle this change.</p>
+        <p>This type of mismatch can result in broken integration flows rejecting requests.</p>
+        <p>There are two common types of contract mismatches:</p>
+        <dl>
+        <dt>Intended</dt>
+        <dd>Knowingly changing the contract and payload (e.g. adding a field)</dd>
+        <dt>Unintended</dt>
+        <dd>Unknowingly changing the payload structure (e.g. due to refactoring)</dd>
+        </dl>
+        <p>This hypothetical demonstrates how even intended contract changes can lead to unintended consequences if consumers are unaware. CCDT provides greater confidence by verifying contracts early.</p>
+        <h2>Testing Benefits</h2>
+        <p>End-to-end (E2E) testing is commonly used today to validate REST API integrations. However, as the number of services grows, manually orchestrating and executing E2E tests becomes increasingly complex, slow, and expensive. E2E tests are difficult to maintain across teams, lead to slow feedback cycles, and provide poor coverage of edge cases. By moving contract verification earlier in the development lifecycle with CCDT, it can provide faster feedback on integration issues through lightweight unit tests, reducing the necessary footprint of long feedback cycle E2E tests for the same API coverage. Shifting left on contract testing is important for organizations looking to scale their REST APIs across internal and external consumers. CCDT complements ongoing E2E testing efforts by verifying contracts early, enabling E2E tests to focus on business logic and user flows over contract mismatches.</p>
+        <h2>Understanding CCDT</h2>
+        <p>Let's continue the example from the contract mismatches section to understand CCDT.</p>
+        <p>Company X defined a consumer contract specifying the API schema and endpoints they required from the vendor:</p>
+        <pre><code class="language-json">&quot;/users&quot;: {
+        &quot;get&quot;: {
+        &quot;request&quot;: {
+        &quot;query&quot;: [
+        &quot;limit&quot;, 
+        &quot;offset&quot;  
+        ]
+        },
+        &quot;response&quot;: {
+        &quot;body&quot;: [
+        &quot;id&quot;,
+        &quot;name&quot; 
+        ]
+        }
+        }
+        }
+        </code></pre>
+        <p>However, the vendor had a different provider contract:</p>
+        <pre><code class="language-json">&quot;/users&quot;: {
+        &quot;get&quot;: {
+        &quot;request&quot;: {
+        &quot;query&quot;: [
+        &quot;limit&quot;,
+        &quot;offset&quot;,
+        &quot;id_code&quot; // Added later  
+        ]
+        },
+        &quot;response&quot;: {
+        &quot;body&quot;: [
+        &quot;id&quot;,
+        &quot;name&quot;
+        ]
+        }
+        }
+        }  
+        </code></pre>
+        <p>The mismatch in required query parameters led to integration failures.</p>
+        <p>With CCDT, the vendor could have validated their provider contract changes against Company X's consumer contract. This would have caught the breaking change before impacting consumers.</p>
+        <p>CCDT gives providers confidence that they are satisfying all consumer expectations as contracts evolve on both sides. This is critical for preventing unintentional breaks.</p>
+        <h2>Implementing CCDT</h2>
+        <p>There are <em>better</em> practices for effectively implementing CCDT:</p>
+        <h3>Generate consumer SDKs from provider contract</h3>
+        <p>Publish OpenAPI (formerly Swagger) specifications that define your public API contract.</p>
+        <p>Consumers use tools like Swagger Codegen to automatically build SDKs in languages from those definitions. The SDKs handle serialization and response validation - a boost for consumers.</p>
+        <h3>Use provider integration tests for contract verification</h3>
+        <p>Run provider integration tests against the consumer contract to verify the provider contract. This ensures the provider meets consumer expectations.</p>
+        <p>At one ecommerce SaaS customer of ours, we leveraged CCDT to verify their provider contract for their integration partners. They had a suite of integration tests that ran against their API. We refactored the test suite to run most tests against the consumer contract in a lightweight and lightening fast test environment verifying the provider contract retaining test coverage while drastically reducing the time-to-feedback from their CI pipeline from multiple hours to ten minutes.</p>
+        <h3>Test common response codes</h3>
+        <p>When testing an API, focus on the shape of responses rather than internal logic. We prefer to put together representative requests for common response codes like 200, 400, and 500. Different response codes can use different schemas, so testing format per code is important.</p>
+        <h3>Test common request parameters and payloads</h3>
+        <p>Test common request parameters like query parameters, headers, path parameters and request and response payloads with the minimum amount of structure possible. These are the most common sources of contract mismatches.</p>
+        <h2>CCDT in Action</h2>
+        <p>Let's walk through how Company X from our previous examples could have avoided their vendor API integration issues by leveraging CCDT.</p>
+        <h2>Defining the Contracts</h2>
+        <p>First, Company X needs to define clear consumer-driven contracts specifying their expectations for the vendor's API. These contracts document the required endpoints, parameters, schemas, etc.</p>
+        <p>For example, they may define the following OpenAPI contract for the <code>/users</code> endpoint needed:</p>
+        <pre><code class="language-yaml"># Company X's consumer contract 
+        
+        &quot;/users&quot;:
+        get:
+        parameters:
+        - name: limit 
+        in: query
+        - name: offset
+        in: query
+        
+        responses:
+        200:
+        description: success response 
+        content:
+        application/json:
+        schema:
+        type: array
+        items:
+        type: object
+        properties:
+        id: 
+        type: integer
+        name:
+        type: string
+        </code></pre>
+        <p>Meanwhile, the vendor defines their provider contract implementing the actual API:</p>
+        <pre><code class="language-yaml"># Vendor's provider contract
+        
+        &quot;/users&quot;:
+        get:
+        parameters:
+        - name: limit
+        - name: offset
+        - name: id_code
+        
+        responses:
+        200:
+        description: success response
+        content:
+        application/json:
+        schema:
+        type: array
+        items:
+        type: object
+        properties:
+        id: integer
+        name: string
+        </code></pre>
+        <h2>Verify Contract Compliance</h2>
+        <p>As API changes are made, Company X validates their API responses against consumer contracts using CCDT.</p>
+        <p>For example, when the <code>id_code</code> query parameter gets added as required by the API team, CCDT should catch this contract breaking change. The API can then decide to handle the new parameter via a default behavior and make the query parameter optional avoiding breaking the consumer contract.</p>
+        <p>CCDT gives Company X higher confidence that their API won't break consumers unexpectedly due to undocumented API changes whether intentional or not.</p>
+        <h2>CCDT in CI/CD Pipeline</h2>
+        <p>Company X hooks up their CCDT validation as part of automated testing in their CI/CD pipeline. Now contract compliance is checked on every code change before reaching production.</p>
+        <p>CCDT shifts API testing left and enables faster feedback due to its lower overhead. This is critical for enterprise microservice architectures.</p>
+        <h2>Wrapping up</h2>
+        <p>Consumer contract driven testing provides a useful technique for verifying integration contracts between API providers and consumers. The benefits for organizations like Company X are:</p>
+        <ul>
+        <li>Improved efficiency through lightweight contract verification</li>
+        <li>Better scalability by avoiding brittle and slow end-to-end setups</li>
+        <li>Faster feedback on changes impacting consumers</li>
+        <li>Confidence in releasing API changes</li>
+        </ul>
+        <p>As APIs become central to modern software, CCDT is important for maintaining quality and reliability across services. API teams could improve productivity by adopting CCDT practices like:</p>
+        <ul>
+        <li>Defining clear consumer-driven and provider-driven contracts</li>
+        <li>Implementing contract validation in your CI/CD pipelines</li>
+        <li>Shifting testing left to gain rapid feedback</li>
+        </ul>
+        <p><strong>If you want help streamlining any part of your software delivery and shift feedback left in any way, <a href="https://referentiallabs.com/contact/">contact us at Referential Labs</a> to find out if and/or how we could help your organization.</strong></p>
+        ]]>
+      </content:encoded>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>API-First</title>
       <link>https://referentiallabs.com/blog/api-first-development/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/api-first-development/</guid>
       <description/>
       <content:encoded>
-        <![CDATA[<p>APIs have become the core building blocks of modern software applications. Taking an API-first approach, where APIs are designed upfront before implementation, can provide immense benefits for enterprise architecture. This white paper explores API-first development - its concepts, benefits, challenges and best practices - to enable SaaS teams to build scalable and flexible platforms.</p>
+        <![CDATA[<p>The rise of APIs has transformed software architecture. Companies like Stripe, Twilio and Slack have shown how developer-friendly APIs can enable entirely new business models. By taking an API-first approach, organizations can build adaptable platforms that drive velocity and create seamless integrations.</p>
+        <p>For example, when Stripe designed their payments API, they focused on simplicity and usability. This allowed thousands of businesses to easily accept payments on their websites and apps. Stripe's API-first philosophy was the catalyst for their meteoric growth.</p>
+        <p>This article explores the principles and benefits of API-first development, particularly for SaaS companies. We'll cover:</p>
+        <ul>
+        <li>Key benefits like improved architecture, developer experience and agility</li>
+        <li>API strategies to make SaaS platforms extensible, customizable and future-proof</li>
+        <li>Styles like REST, GraphQL and gRPC</li>
+        <li>Challenges like upfront design costs</li>
+        <li>Best practices for successful API products</li>
+        <li>Well-designed API characteristics</li>
+        </ul>
+        <p>APIs are rapidly becoming the strategic backbone of digital businesses. This article provides software leaders with guidance to adopt API-first, accelerate development, and delight customers.</p>
         <h2>Benefits of API-First</h2>
         <p>API-first development places APIs as the central focus in the software design process. Key benefits include:</p>
         <dl>
@@ -96,7 +358,7 @@
         </dl>
         <p>These API design principles enable the business capabilities of SaaS platforms to be reusable, portable and adaptable building blocks. Teams can deliver faster and customers can integrate seamlessly.</p>
         <p>But APIs are more than just technical plumbing. They represent the product experience for developer users. Crafting excellent APIs is akin to crafting stellar user interfaces. Customer success depends equally on both external design and internal architecture.</p>
-        <p>That's why I recommend API-first as a core SaaS development paradigm. Starting with API design unlocks architectural thinking for your engineering teams. Keep APIs at the heart of your technology strategy and transform into a truly modern digital enterprise.</p>
+        <p>That's why I recommend API-first as a core SaaS strategy post MVP. Starting with API design unlocks architectural thinking for your engineering teams. Keep APIs at the heart of your technology strategy and transform into a truly modern digital enterprise.</p>
         ]]>
       </content:encoded>
       <pubDate>Thu, 28 Sep 2023 00:00:00 GMT</pubDate>
@@ -287,7 +549,7 @@
       <pubDate>Thu, 21 Sep 2023 00:00:00 GMT</pubDate>
     </item>
     <item>
-      <title>Test Driven Infrastructure Configs with varnishtest</title>
+      <title>Test Driven Infrastructure with varnishtest</title>
       <link>https://referentiallabs.com/blog/varnishtest/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/varnishtest/</guid>
       <description/>
@@ -375,103 +637,63 @@
         expect resp.status == 200
         
         } -run
-        ```text
-        
-        This starts a Varnish instance v1 with the provided VCL, as well as a backend server s1. The client c1 sends a request and validates that the response status code is 200 OK.
-        
-        Multiple requests can be executed and expectations can be validated. This allows testing a variety of scenarios.
-        
-        Running `varnishtest` will execute the test case and report if any expectations fail:
-        
-        ```text
-        $ varnishtest example.vtc
+        </code></pre>
+        <p>This starts a Varnish instance v1 with the provided VCL, as well as a backend server s1. The client c1 sends a request and validates that the response status code is 200 OK.</p>
+        <p>Multiple requests can be executed and expectations can be validated. This allows testing a variety of scenarios.</p>
+        <p>Running <code>varnishtest</code> will execute the test case and report if any expectations fail:</p>
+        <pre><code class="language-text">$ varnishtest example.vtc
         Varnish test case example.vtc passed!
-        ```text
-        
-        varnishtest allows test driven development of infrastructure configurations. By writing the test case upfront, you can validate that intended behavior is implemented correctly.
-        
-        Now let's look at how to leverage `varnishtest` in a CI/CD pipeline.
-        
-        ## Building a CI/CD pipeline
-        
-        To prevent defects in production, it's important to test infrastructure configuration changes before deploying them. By incorporating automated testing in a CI/CD pipeline, we can enable test driven infrastructure.
-        
-        To setup a CI/CD tool for testing Varnish config changes with `varnishtest` the basic workflow will look like this:
-        
-        When a pull request is opened with changes to VCL and `varnishtest` files, the workflow will:
-        
-        1. Check out the code
-        2. Run `varnishtest` to validate the VCL logic
-        3. Publish the test results
-        4. Notify about the test outcome
-        
-        This gives fast feedback on whether the infrastructure change works as expected.
-        
-        Let's walk through the workflow step-by-step.
-        
-        ### 1. Check out code
-        
-        The first job in the workflow checks out the code from the pull request. This makes the changed files available where the next steps will run.
-        
-        ### 2. Run varnishtest
-        
-        Next up, `varnishtest` is executed to validate the VCL logic:
-        
-        ```shell
-        varnishtest -q varnishtest.vtc 
-        ```text
-        
-        The Varnish package is installed and then `varnishtest` is called to run the integration test suite in quiet mode.
-        
-        If any expectations fail, `varnishtest` will return a non-zero exit code that fails the step.
-        
-        ### 3. Publish test results
-        
-        To get visibility into the test execution, the results are published. 
-        
-        ### 4. Notify about test results
-        
-        Finally, a comment is posted on the pull request to notify about the test outcome:
-        
-        
-        This will post a message on Slack whenever a pull request is made. The `if: always()` ensures it runs even when the tests fail, so developers are notified.
-        
-        That concludes the CI workflow! It runs `varnishtest` to validate Varnish config changes and provides automated feedback through published test results and Slack notifications.
-        
-        Now let's look at implementing test cases with `varnishtest` in more detail.
-        
-        ## Writing `varnishtest` cases
-        
-        To get the most out of `varnishtest` for test driven infrastructure, it's important to understand how to write robust test cases.
-        
-        Some best practices for writing good `varnishtest` tests:
-        
-        Test a single use case
-        : Each test case should focus on one specific use case to make them short and maintainable.
-        
-        Validate expected behavior
-        : Use assertions to validate that Varnish responds as expected when hitting a test endpoint.
-        
-        Isolate test data
-        : Unique data should be used in each test case. This prevents cascading failures when a test pollutes Varnish state.
-        
-        Simulate edge conditions
-        : Write test cases for edge scenarios like cache expiration, failures, irregular input etc.
-        
-        Start simple
-        : Begin with a simple straight forward test and build from there. Don't make complex test cases from the start.
-        
-        Reuse test logic
-        : Create reusable test building blocks like helper functions for common test logic.
-        
-        Let's look at an example test case that implements these best practices.
-        
-        ### Cache control test
-        
-        Here is a `varnishtest` file that tests cache control behavior:
-        
-        ```text
-        varnish v1 -vcl+backend {
+        </code></pre>
+        <p>varnishtest allows test driven development of infrastructure configurations. By writing the test case upfront, you can validate that intended behavior is implemented correctly.</p>
+        <p>Now let's look at how to leverage <code>varnishtest</code> in a CI/CD pipeline.</p>
+        <h2>Building a CI/CD pipeline</h2>
+        <p>To prevent defects in production, it's important to test infrastructure configuration changes before deploying them. By incorporating automated testing in a CI/CD pipeline, we can enable test driven infrastructure.</p>
+        <p>To setup a CI/CD tool for testing Varnish config changes with <code>varnishtest</code> the basic workflow will look like this:</p>
+        <p>When a pull request is opened with changes to VCL and <code>varnishtest</code> files, the workflow will:</p>
+        <ol>
+        <li>Check out the code</li>
+        <li>Run <code>varnishtest</code> to validate the VCL logic</li>
+        <li>Publish the test results</li>
+        <li>Notify about the test outcome</li>
+        </ol>
+        <p>This gives fast feedback on whether the infrastructure change works as expected.</p>
+        <p>Let's walk through the workflow step-by-step.</p>
+        <h3>1. Check out code</h3>
+        <p>The first job in the workflow checks out the code from the pull request. This makes the changed files available where the next steps will run.</p>
+        <h3>2. Run varnishtest</h3>
+        <p>Next up, <code>varnishtest</code> is executed to validate the VCL logic:</p>
+        <pre><code class="language-shell">varnishtest -q varnishtest.vtc 
+        </code></pre>
+        <p>The Varnish package is installed and then <code>varnishtest</code> is called to run the integration test suite in quiet mode.</p>
+        <p>If any expectations fail, <code>varnishtest</code> will return a non-zero exit code that fails the step.</p>
+        <h3>3. Publish test results</h3>
+        <p>To get visibility into the test execution, the results are published.</p>
+        <h3>4. Notify about test results</h3>
+        <p>Finally, a comment is posted on the pull request to notify about the test outcome:</p>
+        <p>This will post a message on Slack whenever a pull request is made. The <code>if: always()</code> ensures it runs even when the tests fail, so developers are notified.</p>
+        <p>That concludes the CI workflow! It runs <code>varnishtest</code> to validate Varnish config changes and provides automated feedback through published test results and Slack notifications.</p>
+        <p>Now let's look at implementing test cases with <code>varnishtest</code> in more detail.</p>
+        <h2>Writing <code>varnishtest</code> cases</h2>
+        <p>To get the most out of <code>varnishtest</code> for test driven infrastructure, it's important to understand how to write robust test cases.</p>
+        <p>Some best practices for writing good <code>varnishtest</code> tests:</p>
+        <dl>
+        <dt>Test a single use case</dt>
+        <dd>Each test case should focus on one specific use case to make them short and maintainable.</dd>
+        <dt>Validate expected behavior</dt>
+        <dd>Use assertions to validate that Varnish responds as expected when hitting a test endpoint.</dd>
+        <dt>Isolate test data</dt>
+        <dd>Unique data should be used in each test case. This prevents cascading failures when a test pollutes Varnish state.</dd>
+        <dt>Simulate edge conditions</dt>
+        <dd>Write test cases for edge scenarios like cache expiration, failures, irregular input etc.</dd>
+        <dt>Start simple</dt>
+        <dd>Begin with a simple straight forward test and build from there. Don't make complex test cases from the start.</dd>
+        <dt>Reuse test logic</dt>
+        <dd>Create reusable test building blocks like helper functions for common test logic.</dd>
+        </dl>
+        <p>Let's look at an example test case that implements these best practices.</p>
+        <h3>Cache control test</h3>
+        <p>Here is a <code>varnishtest</code> file that tests cache control behavior:</p>
+        <pre><code class="language-text">varnish v1 -vcl+backend {
         # VCL configuration
         } -start
         
@@ -511,66 +733,54 @@
         rxresp
         expect resp.http.Cache-Control == &quot;public, max-age=10&quot;
         } -run
-        ```text
-        
-        It tests the following scenarios:
-        
-        Cacheable response
-        : The first test validates that the Cache-Control header is set to public with 10 second max-age.
-        
-        Cache expiration
-        : The second test waits 11 seconds so the cache expires and sends a new request to verify the Cache-Control header is still set.
-        
-        This is a focused test case that validates the cache control behavior with a simulated edge condition. The tests are isolated by the generated URL. And it uses the reusable `vtc_begin_test {}` helper.
-        
-        By following `varnishtest` best practices, robust test cases can be written to test drive infrastructure configuration delivery.
-        
-        ## Executing `varnishtest` in CI
-        
-        Now let's look at how to incorporate `varnishtest` in a CI/CD pipeline for automated testing. Here are some best practices when running `varnishtest` in CI:
-        
-        Install Varnish
-        : Use the same method of installing Varnish as is used to deploy Varnish to produciton. Also ensure that the same version is deployed as will be deployed in the same delivery cycle to production.
-        
-        Quiet mode
-        : Use the `-q` option for quieter test output without color coding and progress indicators. This eliminates spurious CI/CD job output that makes it hard for engineers to read when things go belly up.
-        
-        Fail fast
-        : Make sure to set the CI job fails if `varnishtest` returns a non-zero exit code.
-        
-        Parallelization
-        : The `-j` option allows running test cases in parallel to speed up execution. Be careful that your tests can be run in parallel from a correctness perspective. You might need to separate tests that can be run in parellel to run in one job and the sequential tests in another. These different jobs can then be run in paraellel as separate jobs.
-        
-        Artifacts
-        : Persist the `varnishtest` logs as an artifact to debug any failed tests.
-        
-        Smoke tests
-        : Have a fast running smoke test suite to quickly validate across PRs and commits. And a full regression suite for more thorough validation before merging PRs.
-        
-        ## Conclusion
-        
-        In this article, we looked at how to implement test driven infrastructure configurations with Varnish Cache and varnishtest:
-        
-        - Varnish Cache accelerates websites by caching content at the edge. Its exact behavior is determined by VCL configuration.
-        - `varnishtest` allows writing integration test cases that validate Varnish functionality and VCL logic.
-        - A CI/CD workflow with `varnishtest` testing provides automated feedback on infrastructure changes before deploying them.
-        - Following _best practices_ for writing `varnishtest` cases ensures robust test coverage.
-        
-        Adopting test driven infrastructure brings many benefits:
-        
-        - Reliable and rapid releases by testing infrastructure code upfront
-        - Prevent production defects by validating configurations
-        - Improved collaboration between developers and operations 
-        - Documentation of intended behavior through test cases
-        
-        As infrastructure as code practices grow, having the testing tools to validate these programmable configurations is key. Varnish Cache and `varnishtest` are great examples of how test driven infrastructure can be implemented for fast and robust delivery of infrastructure changes.
-        
-        ## References
-        
-        - [Varnish Cache](https://varnish-cache.org)
-        - [varnishtest](https://varnish-cache.org/docs/trunk/reference/varnishtest.html)
-        - [Varnish Configuration Language](https://varnish-cache.org/docs/trunk/users-guide/vcl.html)
         </code></pre>
+        <p>It tests the following scenarios:</p>
+        <dl>
+        <dt>Cacheable response</dt>
+        <dd>The first test validates that the Cache-Control header is set to public with 10 second max-age.</dd>
+        <dt>Cache expiration</dt>
+        <dd>The second test waits 11 seconds so the cache expires and sends a new request to verify the Cache-Control header is still set.</dd>
+        </dl>
+        <p>This is a focused test case that validates the cache control behavior with a simulated edge condition. The tests are isolated by the generated URL. And it uses the reusable <code>vtc_begin_test {}</code> helper.</p>
+        <p>By following <code>varnishtest</code> best practices, robust test cases can be written to test drive infrastructure configuration delivery.</p>
+        <h2>Executing <code>varnishtest</code> in CI</h2>
+        <p>Now let's look at how to incorporate <code>varnishtest</code> in a CI/CD pipeline for automated testing. Here are some best practices when running <code>varnishtest</code> in CI:</p>
+        <dl>
+        <dt>Install Varnish</dt>
+        <dd>Use the same method of installing Varnish as is used to deploy Varnish to produciton. Also ensure that the same version is deployed as will be deployed in the same delivery cycle to production.</dd>
+        <dt>Quiet mode</dt>
+        <dd>Use the <code>-q</code> option for quieter test output without color coding and progress indicators. This eliminates spurious CI/CD job output that makes it hard for engineers to read when things go belly up.</dd>
+        <dt>Fail fast</dt>
+        <dd>Make sure to set the CI job fails if <code>varnishtest</code> returns a non-zero exit code.</dd>
+        <dt>Parallelization</dt>
+        <dd>The <code>-j</code> option allows running test cases in parallel to speed up execution. Be careful that your tests can be run in parallel from a correctness perspective. You might need to separate tests that can be run in parellel to run in one job and the sequential tests in another. These different jobs can then be run in paraellel as separate jobs.</dd>
+        <dt>Artifacts</dt>
+        <dd>Persist the <code>varnishtest</code> logs as an artifact to debug any failed tests.</dd>
+        <dt>Smoke tests</dt>
+        <dd>Have a fast running smoke test suite to quickly validate across PRs and commits. And a full regression suite for more thorough validation before merging PRs.</dd>
+        </dl>
+        <h2>Conclusion</h2>
+        <p>In this article, we looked at how to implement test driven infrastructure configurations with Varnish Cache and varnishtest:</p>
+        <ul>
+        <li>Varnish Cache accelerates websites by caching content at the edge. Its exact behavior is determined by VCL configuration.</li>
+        <li><code>varnishtest</code> allows writing integration test cases that validate Varnish functionality and VCL logic.</li>
+        <li>A CI/CD workflow with <code>varnishtest</code> testing provides automated feedback on infrastructure changes before deploying them.</li>
+        <li>Following <em>best practices</em> for writing <code>varnishtest</code> cases ensures robust test coverage.</li>
+        </ul>
+        <p>Adopting test driven infrastructure brings many benefits:</p>
+        <ul>
+        <li>Reliable and rapid releases by testing infrastructure code upfront</li>
+        <li>Prevent production defects by validating configurations</li>
+        <li>Improved collaboration between developers and operations</li>
+        <li>Documentation of intended behavior through test cases</li>
+        </ul>
+        <p>As infrastructure as code practices grow, having the testing tools to validate these programmable configurations is key. Varnish Cache and <code>varnishtest</code> are great examples of how test driven infrastructure can be implemented for fast and robust delivery of infrastructure changes.</p>
+        <h2>References</h2>
+        <ul>
+        <li><a href="https://varnish-cache.org/">Varnish Cache</a></li>
+        <li><a href="https://varnish-cache.org/docs/trunk/reference/varnishtest.html">varnishtest</a></li>
+        <li><a href="https://varnish-cache.org/docs/trunk/users-guide/vcl.html">Varnish Configuration Language</a></li>
+        </ul>
         ]]>
       </content:encoded>
       <pubDate>Mon, 28 Aug 2023 00:00:00 GMT</pubDate>

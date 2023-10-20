@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><script src="https://www.googletagmanager.com/gtag/js?id=G-9FB8SDTWWP" async=""></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-9FB8SDTWWP')</script><meta charset="utf-8"><meta content="-673247634" name="ir-site-verification-token"><meta content="index, follow" name="”robots”"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="/styles.css" rel="stylesheet"><link href="" rel="me"><title>Test Driven Infrastructure Configs with varnishtest</title><meta content="Learn how to implement test driven infrastructure configs with CI/CD pipelines for reliable and rapid delivery, varnishtest for automated testing of edge logic in Varnish" name="description"><meta content="#5AA60C" name="theme-color"><meta content="website" name="og:type"><meta content="en_US" name="og:locale"><meta content="Referential Labs" name="og:site_name"><meta name="og:image"><meta content="Test Driven Infrastructure Configs with varnishtest" name="og:title"><meta content="https://referentiallabs.com/blog/varnishtest/" name="og:url"><meta content="Learn how to implement test driven infrastructure configs with CI/CD pipelines for reliable and rapid delivery, varnishtest for automated testing of edge logic in Varnish" name="og:description"><meta content="summary_large_image" name="twitter:card"><meta content="@referentiallabs" name="twitter:site"><meta content="@SusanPotter" name="twitter:creator"><meta name="twitter:image"><meta name="twitter:image:alt"><meta content="Test Driven Infrastructure Configs with varnishtest" name="twitter:title"><meta content="Learn how to implement test driven infrastructure configs with CI/CD pipelines for reliable and rapid delivery, varnishtest for automated testing of edge logic in Varnish" name="twitter:description"><link href="https://referentiallabs.com/blog/varnishtest/" rel="canonical"><link href="/manifest.json" rel="manifest"><link color="#ffffff" href="/favicon.ico" rel="mask-icon"><link href="/favicon.ico" rel="icon"><link href="/apple-touch-icon.webp" rel="apple-touch-icon"><link href="/apple-touch-icon-precompose.webp" rel="apple-touch-icon-precomposed"><meta content="default-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://fonts.gstatic.com https://js.hsforms.net https://forms.hsforms.com https://www.google.com https://app.hubspot.com https://forms-na1.hsforms.com 'unsafe-inline'" http-equiv="Content-Security-Policy"></head><body class="bg-white"><header class="mx-auto w-screen w-full max-w-3xl md:max-w-4xl lg:max-w-6xl mx-auto"><div class="bg-white"><div class="flex mx-auto px-6 py-6 md:space-x-10 lg:px-8"><div class="flex-auto justify-start lg:flex-1"><a href="/"> <span class="sr-only">Referential Labs</span> <img alt="" class="aspect-[94/100]" height="50" src="/images/logo-sm.webp" width="47"> </a></div><nav class="space-x-2 md:space-x-8 lg:space-x-10 md:flex-auto place-end"><a class="text-base px-2 py-1 md:px-4 md:py-2 m-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/"> Home </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#benefits"> Benefits </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#team"> Team </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#plans"> Plans </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#faqs"> FAQ </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#newsletter"> Newsletter </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/blog">Blog</a></nav></div></div></header><script type="application/ld+json">
+<html lang="en-US"><head><script src="https://www.googletagmanager.com/gtag/js?id=G-9FB8SDTWWP" async=""></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-9FB8SDTWWP')</script><meta charset="utf-8"><meta content="-673247634" name="ir-site-verification-token"><meta content="index, follow" name="”robots”"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="/styles.css" rel="stylesheet"><link href="" rel="me"><title>Test Driven Infrastructure with varnishtest</title><meta content="Learn how to implement test driven infrastructure configs with CI/CD pipelines for reliable and rapid delivery, varnishtest for automated testing of edge logic in Varnish" name="description"><meta content="#5AA60C" name="theme-color"><meta content="website" name="og:type"><meta content="en_US" name="og:locale"><meta content="Referential Labs" name="og:site_name"><meta content="/images/blog-test-driven-infrastructure-varnishtest.webp" name="og:image"><meta content="Test Driven Infrastructure with varnishtest" name="og:title"><meta content="https://referentiallabs.com/blog/varnishtest/" name="og:url"><meta content="Learn how to implement test driven infrastructure configs with CI/CD pipelines for reliable and rapid delivery, varnishtest for automated testing of edge logic in Varnish" name="og:description"><meta content="summary_large_image" name="twitter:card"><meta content="@referentiallabs" name="twitter:site"><meta content="@SusanPotter" name="twitter:creator"><meta content="/images/blog-test-driven-infrastructure-varnishtest.webp" name="twitter:image"><meta content="Photo of a person looking at their phone in front of a laptop and monitor on a desk." name="twitter:image:alt"><meta content="Test Driven Infrastructure with varnishtest" name="twitter:title"><meta content="Learn how to implement test driven infrastructure configs with CI/CD pipelines for reliable and rapid delivery, varnishtest for automated testing of edge logic in Varnish" name="twitter:description"><link href="https://referentiallabs.com/blog/varnishtest/" rel="canonical"><link href="/manifest.json" rel="manifest"><link color="#ffffff" href="/favicon.ico" rel="mask-icon"><link href="/favicon.ico" rel="icon"><link href="/apple-touch-icon.webp" rel="apple-touch-icon"><link href="/apple-touch-icon-precompose.webp" rel="apple-touch-icon-precomposed"><meta content="default-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://fonts.gstatic.com https://js.hsforms.net https://forms.hsforms.com https://www.google.com https://app.hubspot.com https://forms-na1.hsforms.com 'unsafe-inline'" http-equiv="Content-Security-Policy"></head><body class="bg-white"><header class="mx-auto w-screen w-full max-w-3xl md:max-w-4xl lg:max-w-6xl mx-auto"><div class="bg-white"><div class="flex mx-auto px-6 py-6 md:space-x-10 lg:px-8"><div class="flex-auto justify-start lg:flex-1"><a href="/"> <span class="sr-only">Referential Labs</span> <img alt="" class="aspect-[94/100]" height="50" src="/images/logo-sm.webp" width="47"> </a></div><nav class="space-x-2 md:space-x-8 lg:space-x-10 md:flex-auto place-end"><a class="text-base px-2 py-1 md:px-4 md:py-2 m-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/"> Home </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#benefits"> Benefits </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#team"> Team </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#plans"> Plans </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/#faqs"> FAQ </a><a class="text-base px-2 py-1 md:px-4 md:py-2 my-auto font-medium text-stone-600 hover:rounded-lg hover:no-underline hover:ring-2 hover:ring-green-800" href="/blog">Blog</a></nav></div></div></header><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListelElement": [
+  "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
@@ -12,14 +12,31 @@
   ]
 }
 </script><script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    
-  ]
-}
-</script><main class="max-w-3xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full px-3"><article class="prose"><h1 class="text-2xl font-bold">Test Driven Infrastructure Configs with varnishtest</h1><p class="text-base font-light italic pb-3 border-b border-stone-300">Sun Aug 27 2023 19:00:00 GMT-0500 (Central Daylight Time)</p><div><div class="prose"><p>Infrastructure as code and continuous integration/continuous delivery (CI/CD) pipelines are becoming the norm for delivering software applications. By codifying infrastructure and leveraging automation, organizations can release changes faster and with more reliability.</p><p>A key practice in modern software delivery is test driven development (TDD), where tests are written before code. This ensures that the code is testable and aligns with requirements. The same TDD principles can be applied when managing infrastructure configurations.</p><p>In this article, we will look at how to build a CI/CD pipeline with test driven infrastructure configurations, using Varnish Cache and the <code>varnishtest</code> tool as a practical example.</p><h2>What to expect from this post</h2><p>This article aims to provide a guide on leveraging test driven development principles for infrastructure code and configurations, using examples of Varnish Cache's varnishtest. Specifically:</p><ul><li>The benefits of test driven infrastructure configurations and CI/CD pipelines</li><li>An overview of Varnish Cache and how it is configured through VCL</li><li>Introduction to the <code>varnishtest</code> tool for testing Varnish logic</li><li>Best practices for writing robust <code>varnishtest</code> test cases</li><li>How to effectively incorporate <code>varnishtest</code> in a CI pipeline</li><li>Conclusion on how Varnish Cache and <code>varnishtest</code> enable test driven infrastructure.</li></ul><h2>Overview</h2><p>Varnish Cache is a popular open source web application accelerator. It can speed up websites by caching content close to visitors. The Varnish configuration determines its exact behavior and is described in VCL (Varnish Configuration Language).</p><p>To validate that configuration changes in Varnish VCL work as intended, the <code>varnishtest</code> tool can be used. It is part of Varnish Cache and allows writing integration tests that interact with a Varnish instance to test scenarios and expectations.</p><p>By incorporating <code>varnishtest</code> in an automated CI/CD pipeline, infrastructure changes can be validated before they are deployed to production environments. The workflow would look like this:</p><ol><li>A developer makes a change to the Varnish VCL configuration file</li><li>They write an integration test with <code>varnishtest</code> that validates the expected behavior</li><li>A pull request is opened with the VCL change and test</li><li>In the CI pipeline, the <code>varnishtest</code> is executed against the new VCL</li><li>If the test passes, the change can be reviewed and merged</li><li>In the CD pipeline, the VCL change is deployed after passing all tests</li></ol><p>This ensures infrastructure changes are thoroughly tested before they are deployed. The <code>varnishtest</code> tool essentially allows test driven development for infrastructure configurations.</p><p>In the rest of this article, we will explore <code>varnishtest</code> and Varnish in more detail.</p><h2>Introduction to Varnish Cache</h2><p>Varnish Cache is an HTTP accelerator designed for speeding up websites and APIs. It can store cacheable content in memory, closer to your visitors. This reduces latency and takes load off your web servers.</p><p>Some typical use cases for Varnish include:</p><ul><li>Caching static assets like images, CSS and Javascript files</li><li>Caching API responses</li><li>Offloading traffic from application servers</li><li>Implementing edge logic like routing and access control lists</li></ul><p>Varnish is often deployed as a reverse proxy. Visitors send requests to Varnish, which forwards cache misses to application servers in the backend.</p><p>To determine the exact behavior of Varnish, you configure it with VCL (Varnish Configuration Language). It describes how Varnish should handle requests and responses.</p><p>Some examples of VCL functionality:</p><ul><li>Defining when content can be cached</li><li>Selecting which backend server to route requests to</li><li>Transforming requests and responses</li><li>Implementing access control lists</li></ul><p>Changes in VCL can introduce bugs or incorrect behavior. That's why testing the VCL is important.</p><h2>Introducing varnishtest</h2><p>The <code>varnishtest</code> tool is part of Varnish Cache and makes it easy to test VCL programmatically. It allows writing integration tests for your Varnish configuration.</p><p>The <code>varnishtest</code> tool performs the following:</p><ul><li>It starts a Varnish test instance with the VCL configuration under test</li><li>HTTP clients can send requests to the test Varnish and receive responses</li><li>Conditions and expectations can be asserted</li></ul><p>This validates that the VCL logic results in the correct Varnish behavior.</p><p>A test case typically interacts with the following components:</p><ul><li>Varnish instance</li><li>Backend server</li><li>HTTP client</li></ul><p>These are declared in VTC files. VTC stands for Varnish Test Case and uses a domain specific language.</p><p>Here is an example of a Varnish Test Case:</p><pre><code class="language-text hljs language-plaintext">varnish v1 -vcl+backend {
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "@id": "https://referentiallabs.com/blog/varnishtest/#BlogPosting",
+    "mainEntityOfPage": "https://referentiallabs.com/blog/varnishtest/",
+    "headline": "Test Driven Infrastructure with varnishtest",
+    "name": "Test Driven Infrastructure with varnishtest",
+    "description": "Learn how to implement test driven infrastructure configs with CI/CD pipelines for reliable and rapid delivery, varnishtest for automated testing of edge logic in Varnish",
+    "datePublished": "2023-08-27T19:00:00-05:00",
+    "author": {
+      "@type": "Person",
+      "@id": "https://referentiallabs.com/about#susan-potter",
+      "url": "https://referentiallabs.com/about#susan-potter",
+      "name": "Susan Potter"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "@id": "https://referentiallabs.com/images/spotter.webp",
+      "url": "https://referentiallabs.com/images/spotter.webp",
+      "height": "600",
+      "width": "480"
+    },
+    "url": "https://referentiallabs.com/blog/varnishtest/"
+  }
+</script><main class="max-w-3xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full px-3"><article class="prose"><h1 class="text-2xl font-bold">Test Driven Infrastructure with varnishtest</h1><p class="text-base font-light italic pb-3 border-b border-stone-300">August 27th, 2023</p><div><img alt="Photo of a person looking at their phone in front of a laptop and monitor on a desk." class="w-5/6 mx-auto aspect-[16/9]" height="635" loading="lazy" src="/images/blog-test-driven-infrastructure-varnishtest.webp" width="844"><div class="prose"><p>Infrastructure as code and continuous integration/continuous delivery (CI/CD) pipelines are becoming the norm for delivering software applications. By codifying infrastructure and leveraging automation, organizations can release changes faster and with more reliability.</p><p>A key practice in modern software delivery is test driven development (TDD), where tests are written before code. This ensures that the code is testable and aligns with requirements. The same TDD principles can be applied when managing infrastructure configurations.</p><p>In this article, we will look at how to build a CI/CD pipeline with test driven infrastructure configurations, using Varnish Cache and the <code>varnishtest</code> tool as a practical example.</p><h2>What to expect from this post</h2><p>This article aims to provide a guide on leveraging test driven development principles for infrastructure code and configurations, using examples of Varnish Cache's varnishtest. Specifically:</p><ul><li>The benefits of test driven infrastructure configurations and CI/CD pipelines</li><li>An overview of Varnish Cache and how it is configured through VCL</li><li>Introduction to the <code>varnishtest</code> tool for testing Varnish logic</li><li>Best practices for writing robust <code>varnishtest</code> test cases</li><li>How to effectively incorporate <code>varnishtest</code> in a CI pipeline</li><li>Conclusion on how Varnish Cache and <code>varnishtest</code> enable test driven infrastructure.</li></ul><h2>Overview</h2><p>Varnish Cache is a popular open source web application accelerator. It can speed up websites by caching content close to visitors. The Varnish configuration determines its exact behavior and is described in VCL (Varnish Configuration Language).</p><p>To validate that configuration changes in Varnish VCL work as intended, the <code>varnishtest</code> tool can be used. It is part of Varnish Cache and allows writing integration tests that interact with a Varnish instance to test scenarios and expectations.</p><p>By incorporating <code>varnishtest</code> in an automated CI/CD pipeline, infrastructure changes can be validated before they are deployed to production environments. The workflow would look like this:</p><ol><li>A developer makes a change to the Varnish VCL configuration file</li><li>They write an integration test with <code>varnishtest</code> that validates the expected behavior</li><li>A pull request is opened with the VCL change and test</li><li>In the CI pipeline, the <code>varnishtest</code> is executed against the new VCL</li><li>If the test passes, the change can be reviewed and merged</li><li>In the CD pipeline, the VCL change is deployed after passing all tests</li></ol><p>This ensures infrastructure changes are thoroughly tested before they are deployed. The <code>varnishtest</code> tool essentially allows test driven development for infrastructure configurations.</p><p>In the rest of this article, we will explore <code>varnishtest</code> and Varnish in more detail.</p><h2>Introduction to Varnish Cache</h2><p>Varnish Cache is an HTTP accelerator designed for speeding up websites and APIs. It can store cacheable content in memory, closer to your visitors. This reduces latency and takes load off your web servers.</p><p>Some typical use cases for Varnish include:</p><ul><li>Caching static assets like images, CSS and Javascript files</li><li>Caching API responses</li><li>Offloading traffic from application servers</li><li>Implementing edge logic like routing and access control lists</li></ul><p>Varnish is often deployed as a reverse proxy. Visitors send requests to Varnish, which forwards cache misses to application servers in the backend.</p><p>To determine the exact behavior of Varnish, you configure it with VCL (Varnish Configuration Language). It describes how Varnish should handle requests and responses.</p><p>Some examples of VCL functionality:</p><ul><li>Defining when content can be cached</li><li>Selecting which backend server to route requests to</li><li>Transforming requests and responses</li><li>Implementing access control lists</li></ul><p>Changes in VCL can introduce bugs or incorrect behavior. That's why testing the VCL is important.</p><h2>Introducing varnishtest</h2><p>The <code>varnishtest</code> tool is part of Varnish Cache and makes it easy to test VCL programmatically. It allows writing integration tests for your Varnish configuration.</p><p>The <code>varnishtest</code> tool performs the following:</p><ul><li>It starts a Varnish test instance with the VCL configuration under test</li><li>HTTP clients can send requests to the test Varnish and receive responses</li><li>Conditions and expectations can be asserted</li></ul><p>This validates that the VCL logic results in the correct Varnish behavior.</p><p>A test case typically interacts with the following components:</p><ul><li>Varnish instance</li><li>Backend server</li><li>HTTP client</li></ul><p>These are declared in VTC files. VTC stands for Varnish Test Case and uses a domain specific language.</p><p>Here is an example of a Varnish Test Case:</p><pre><code class="language-text hljs language-plaintext">varnish v1 -vcl+backend {
   # VCL configuration
 } -start
 
@@ -39,103 +56,10 @@ client c1 {
   expect resp.status == 200
 
 } -run
-```text
-
-This starts a Varnish instance v1 with the provided VCL, as well as a backend server s1. The client c1 sends a request and validates that the response status code is 200 OK.
-
-Multiple requests can be executed and expectations can be validated. This allows testing a variety of scenarios.
-
-Running `varnishtest` will execute the test case and report if any expectations fail:
-
-```text
-$ varnishtest example.vtc
+</code></pre><p>This starts a Varnish instance v1 with the provided VCL, as well as a backend server s1. The client c1 sends a request and validates that the response status code is 200 OK.</p><p>Multiple requests can be executed and expectations can be validated. This allows testing a variety of scenarios.</p><p>Running <code>varnishtest</code> will execute the test case and report if any expectations fail:</p><pre><code class="language-text hljs language-plaintext">$ varnishtest example.vtc
 Varnish test case example.vtc passed!
-```text
-
-varnishtest allows test driven development of infrastructure configurations. By writing the test case upfront, you can validate that intended behavior is implemented correctly.
-
-Now let's look at how to leverage `varnishtest` in a CI/CD pipeline.
-
-## Building a CI/CD pipeline
-
-To prevent defects in production, it's important to test infrastructure configuration changes before deploying them. By incorporating automated testing in a CI/CD pipeline, we can enable test driven infrastructure.
-
-To setup a CI/CD tool for testing Varnish config changes with `varnishtest` the basic workflow will look like this:
-
-When a pull request is opened with changes to VCL and `varnishtest` files, the workflow will:
-
-1. Check out the code
-2. Run `varnishtest` to validate the VCL logic
-3. Publish the test results
-4. Notify about the test outcome
-
-This gives fast feedback on whether the infrastructure change works as expected.
-
-Let's walk through the workflow step-by-step.
-
-### 1. Check out code
-
-The first job in the workflow checks out the code from the pull request. This makes the changed files available where the next steps will run.
-
-### 2. Run varnishtest
-
-Next up, `varnishtest` is executed to validate the VCL logic:
-
-```shell
-varnishtest -q varnishtest.vtc 
-```text
-
-The Varnish package is installed and then `varnishtest` is called to run the integration test suite in quiet mode.
-
-If any expectations fail, `varnishtest` will return a non-zero exit code that fails the step.
-
-### 3. Publish test results
-
-To get visibility into the test execution, the results are published. 
-
-### 4. Notify about test results
-
-Finally, a comment is posted on the pull request to notify about the test outcome:
-
-
-This will post a message on Slack whenever a pull request is made. The `if: always()` ensures it runs even when the tests fail, so developers are notified.
-
-That concludes the CI workflow! It runs `varnishtest` to validate Varnish config changes and provides automated feedback through published test results and Slack notifications.
-
-Now let's look at implementing test cases with `varnishtest` in more detail.
-
-## Writing `varnishtest` cases
-
-To get the most out of `varnishtest` for test driven infrastructure, it's important to understand how to write robust test cases.
-
-Some best practices for writing good `varnishtest` tests:
-
-Test a single use case
-: Each test case should focus on one specific use case to make them short and maintainable.
-
-Validate expected behavior
-: Use assertions to validate that Varnish responds as expected when hitting a test endpoint.
-
-Isolate test data
-: Unique data should be used in each test case. This prevents cascading failures when a test pollutes Varnish state.
-
-Simulate edge conditions
-: Write test cases for edge scenarios like cache expiration, failures, irregular input etc.
-
-Start simple
-: Begin with a simple straight forward test and build from there. Don't make complex test cases from the start.
-
-Reuse test logic
-: Create reusable test building blocks like helper functions for common test logic.
-
-Let's look at an example test case that implements these best practices.
-
-### Cache control test
-
-Here is a `varnishtest` file that tests cache control behavior:
-
-```text
-varnish v1 -vcl+backend {
+</code></pre><p>varnishtest allows test driven development of infrastructure configurations. By writing the test case upfront, you can validate that intended behavior is implemented correctly.</p><p>Now let's look at how to leverage <code>varnishtest</code> in a CI/CD pipeline.</p><h2>Building a CI/CD pipeline</h2><p>To prevent defects in production, it's important to test infrastructure configuration changes before deploying them. By incorporating automated testing in a CI/CD pipeline, we can enable test driven infrastructure.</p><p>To setup a CI/CD tool for testing Varnish config changes with <code>varnishtest</code> the basic workflow will look like this:</p><p>When a pull request is opened with changes to VCL and <code>varnishtest</code> files, the workflow will:</p><ol><li>Check out the code</li><li>Run <code>varnishtest</code> to validate the VCL logic</li><li>Publish the test results</li><li>Notify about the test outcome</li></ol><p>This gives fast feedback on whether the infrastructure change works as expected.</p><p>Let's walk through the workflow step-by-step.</p><h3>1. Check out code</h3><p>The first job in the workflow checks out the code from the pull request. This makes the changed files available where the next steps will run.</p><h3>2. Run varnishtest</h3><p>Next up, <code>varnishtest</code> is executed to validate the VCL logic:</p><pre><code class="language-shell hljs">varnishtest -q varnishtest.vtc 
+</code></pre><p>The Varnish package is installed and then <code>varnishtest</code> is called to run the integration test suite in quiet mode.</p><p>If any expectations fail, <code>varnishtest</code> will return a non-zero exit code that fails the step.</p><h3>3. Publish test results</h3><p>To get visibility into the test execution, the results are published.</p><h3>4. Notify about test results</h3><p>Finally, a comment is posted on the pull request to notify about the test outcome:</p><p>This will post a message on Slack whenever a pull request is made. The <code>if: always()</code> ensures it runs even when the tests fail, so developers are notified.</p><p>That concludes the CI workflow! It runs <code>varnishtest</code> to validate Varnish config changes and provides automated feedback through published test results and Slack notifications.</p><p>Now let's look at implementing test cases with <code>varnishtest</code> in more detail.</p><h2>Writing <code>varnishtest</code> cases</h2><p>To get the most out of <code>varnishtest</code> for test driven infrastructure, it's important to understand how to write robust test cases.</p><p>Some best practices for writing good <code>varnishtest</code> tests:</p><dl><dt>Test a single use case</dt><dd>Each test case should focus on one specific use case to make them short and maintainable.</dd><dt>Validate expected behavior</dt><dd>Use assertions to validate that Varnish responds as expected when hitting a test endpoint.</dd><dt>Isolate test data</dt><dd>Unique data should be used in each test case. This prevents cascading failures when a test pollutes Varnish state.</dd><dt>Simulate edge conditions</dt><dd>Write test cases for edge scenarios like cache expiration, failures, irregular input etc.</dd><dt>Start simple</dt><dd>Begin with a simple straight forward test and build from there. Don't make complex test cases from the start.</dd><dt>Reuse test logic</dt><dd>Create reusable test building blocks like helper functions for common test logic.</dd></dl><p>Let's look at an example test case that implements these best practices.</p><h3>Cache control test</h3><p>Here is a <code>varnishtest</code> file that tests cache control behavior:</p><pre><code class="language-text hljs language-plaintext">varnish v1 -vcl+backend {
   # VCL configuration
 } -start
 
@@ -175,63 +99,4 @@ vtc_begin_test {
   rxresp
   expect resp.http.Cache-Control == "public, max-age=10"
 } -run
-```text
-
-It tests the following scenarios:
-
-Cacheable response
-: The first test validates that the Cache-Control header is set to public with 10 second max-age.
-
-Cache expiration
-: The second test waits 11 seconds so the cache expires and sends a new request to verify the Cache-Control header is still set.
-
-This is a focused test case that validates the cache control behavior with a simulated edge condition. The tests are isolated by the generated URL. And it uses the reusable `vtc_begin_test {}` helper.
-
-By following `varnishtest` best practices, robust test cases can be written to test drive infrastructure configuration delivery.
-
-## Executing `varnishtest` in CI
-
-Now let's look at how to incorporate `varnishtest` in a CI/CD pipeline for automated testing. Here are some best practices when running `varnishtest` in CI:
-
-Install Varnish
-: Use the same method of installing Varnish as is used to deploy Varnish to produciton. Also ensure that the same version is deployed as will be deployed in the same delivery cycle to production.
-
-Quiet mode
-: Use the `-q` option for quieter test output without color coding and progress indicators. This eliminates spurious CI/CD job output that makes it hard for engineers to read when things go belly up.
-
-Fail fast
-: Make sure to set the CI job fails if `varnishtest` returns a non-zero exit code.
-
-Parallelization
-: The `-j` option allows running test cases in parallel to speed up execution. Be careful that your tests can be run in parallel from a correctness perspective. You might need to separate tests that can be run in parellel to run in one job and the sequential tests in another. These different jobs can then be run in paraellel as separate jobs.
-
-Artifacts
-: Persist the `varnishtest` logs as an artifact to debug any failed tests.
-
-Smoke tests
-: Have a fast running smoke test suite to quickly validate across PRs and commits. And a full regression suite for more thorough validation before merging PRs.
-
-## Conclusion
-
-In this article, we looked at how to implement test driven infrastructure configurations with Varnish Cache and varnishtest:
-
-- Varnish Cache accelerates websites by caching content at the edge. Its exact behavior is determined by VCL configuration.
-- `varnishtest` allows writing integration test cases that validate Varnish functionality and VCL logic.
-- A CI/CD workflow with `varnishtest` testing provides automated feedback on infrastructure changes before deploying them.
-- Following _best practices_ for writing `varnishtest` cases ensures robust test coverage.
-
-Adopting test driven infrastructure brings many benefits:
-
-- Reliable and rapid releases by testing infrastructure code upfront
-- Prevent production defects by validating configurations
-- Improved collaboration between developers and operations 
-- Documentation of intended behavior through test cases
-
-As infrastructure as code practices grow, having the testing tools to validate these programmable configurations is key. Varnish Cache and `varnishtest` are great examples of how test driven infrastructure can be implemented for fast and robust delivery of infrastructure changes.
-
-## References
-
-- [Varnish Cache](https://varnish-cache.org)
-- [varnishtest](https://varnish-cache.org/docs/trunk/reference/varnishtest.html)
-- [Varnish Configuration Language](https://varnish-cache.org/docs/trunk/users-guide/vcl.html)
-</code></pre></div></div></article></main><footer class="bg-white"><div class="mx-auto max-w-7xl overflow-hidden"><div class="mt-4 flex justify-center space-x-10"><a class="text-stone-500 hover:text-green-700" href="https://twitter.com/referentiallabs"> <span class="sr-only">Twitter</span> <svg class="h-6 w-6" viewbox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg> </a><a class="text-stone-500 hover:text-green-700" href="https://github.com/referentiallabs"> <span class="sr-only">GitHub</span> <svg class="h-6 w-6" viewbox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" fill-rule="evenodd"></path></svg> </a></div><p class="mt-2 md:mt-4 text-center text-xs leading-5 text-stone-600">© 2020 - 2023 Referential Labs LLC. All rights reserved.</p></div></footer></body></html>
+</code></pre><p>It tests the following scenarios:</p><dl><dt>Cacheable response</dt><dd>The first test validates that the Cache-Control header is set to public with 10 second max-age.</dd><dt>Cache expiration</dt><dd>The second test waits 11 seconds so the cache expires and sends a new request to verify the Cache-Control header is still set.</dd></dl><p>This is a focused test case that validates the cache control behavior with a simulated edge condition. The tests are isolated by the generated URL. And it uses the reusable <code>vtc_begin_test {}</code> helper.</p><p>By following <code>varnishtest</code> best practices, robust test cases can be written to test drive infrastructure configuration delivery.</p><h2>Executing <code>varnishtest</code> in CI</h2><p>Now let's look at how to incorporate <code>varnishtest</code> in a CI/CD pipeline for automated testing. Here are some best practices when running <code>varnishtest</code> in CI:</p><dl><dt>Install Varnish</dt><dd>Use the same method of installing Varnish as is used to deploy Varnish to produciton. Also ensure that the same version is deployed as will be deployed in the same delivery cycle to production.</dd><dt>Quiet mode</dt><dd>Use the <code>-q</code> option for quieter test output without color coding and progress indicators. This eliminates spurious CI/CD job output that makes it hard for engineers to read when things go belly up.</dd><dt>Fail fast</dt><dd>Make sure to set the CI job fails if <code>varnishtest</code> returns a non-zero exit code.</dd><dt>Parallelization</dt><dd>The <code>-j</code> option allows running test cases in parallel to speed up execution. Be careful that your tests can be run in parallel from a correctness perspective. You might need to separate tests that can be run in parellel to run in one job and the sequential tests in another. These different jobs can then be run in paraellel as separate jobs.</dd><dt>Artifacts</dt><dd>Persist the <code>varnishtest</code> logs as an artifact to debug any failed tests.</dd><dt>Smoke tests</dt><dd>Have a fast running smoke test suite to quickly validate across PRs and commits. And a full regression suite for more thorough validation before merging PRs.</dd></dl><h2>Conclusion</h2><p>In this article, we looked at how to implement test driven infrastructure configurations with Varnish Cache and varnishtest:</p><ul><li>Varnish Cache accelerates websites by caching content at the edge. Its exact behavior is determined by VCL configuration.</li><li><code>varnishtest</code> allows writing integration test cases that validate Varnish functionality and VCL logic.</li><li>A CI/CD workflow with <code>varnishtest</code> testing provides automated feedback on infrastructure changes before deploying them.</li><li>Following <em>best practices</em> for writing <code>varnishtest</code> cases ensures robust test coverage.</li></ul><p>Adopting test driven infrastructure brings many benefits:</p><ul><li>Reliable and rapid releases by testing infrastructure code upfront</li><li>Prevent production defects by validating configurations</li><li>Improved collaboration between developers and operations</li><li>Documentation of intended behavior through test cases</li></ul><p>As infrastructure as code practices grow, having the testing tools to validate these programmable configurations is key. Varnish Cache and <code>varnishtest</code> are great examples of how test driven infrastructure can be implemented for fast and robust delivery of infrastructure changes.</p><h2>References</h2><ul><li><a href="https://varnish-cache.org">Varnish Cache</a></li><li><a href="https://varnish-cache.org/docs/trunk/reference/varnishtest.html">varnishtest</a></li><li><a href="https://varnish-cache.org/docs/trunk/users-guide/vcl.html">Varnish Configuration Language</a></li></ul></div></div></article></main><footer class="bg-white"><div class="mx-auto max-w-7xl overflow-hidden"><div class="mt-4 flex justify-center space-x-10"><a class="text-stone-500 hover:text-green-700" href="https://www.linkedin.com/company/10681458"> <span class="sr-only">LinkedIn</span> <svg class="h-6 w-6" viewbox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg> </a><a class="text-stone-500 hover:text-green-700" href="https://twitter.com/referentiallabs"> <span class="sr-only">Twitter</span> <svg class="h-6 w-6" viewbox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg> </a><a class="text-stone-500 hover:text-green-700" href="https://github.com/referentiallabs"> <span class="sr-only">GitHub</span> <svg class="h-6 w-6" viewbox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" fill-rule="evenodd"></path></svg> </a></div><p class="mt-2 md:mt-4 text-center text-xs leading-5 text-stone-600">© 2020 - 2023 Referential Labs LLC. All rights reserved.</p></div></footer></body></html>
