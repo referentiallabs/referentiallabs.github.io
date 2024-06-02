@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
   <channel>
-    <title/>
     <link>https://referentiallabs.com/</link>
     <atom:link href="https://referentiallabs.com/feed.rss" rel="self" type="application/rss+xml"/>
-    <description/>
-    <lastBuildDate>Sun, 02 Jun 2024 08:59:42 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 02 Jun 2024 13:46:44 GMT</lastBuildDate>
     <language>en</language>
-    <generator>Lume v1.19.2</generator>
+    <generator>Lume v2.1.4</generator>
     <item>
       <title>API-First</title>
       <link>https://referentiallabs.com/blog/api-first-development/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/api-first-development/</guid>
-      <description/>
       <content:encoded>
         <![CDATA[<p>The rise of APIs has transformed software architecture. Companies like Stripe, Twilio and Slack have shown how developer-friendly APIs can enable entirely new business models. By taking an API-first approach, organizations can build adaptable platforms that drive velocity and create seamless integrations.</p>
         <p>For example, when Stripe designed their payments API, they focused on simplicity and usability. This allowed thousands of businesses to easily accept payments on their websites and apps. Stripe's API-first philosophy was the catalyst for their meteoric growth.</p>
@@ -116,7 +113,6 @@
       <title>From VPNs to Zero Trust</title>
       <link>https://referentiallabs.com/blog/vpns-to-zero-trust/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/vpns-to-zero-trust/</guid>
-      <description/>
       <content:encoded>
         <![CDATA[<p>Over the past two decades, corporate network security has undergone a dramatic evolution. What began as a perimeter model based on VPNs and firewalls has gradually transitioned into the emerging zero trust paradigm. This evolution has been driven by advances in technology, the rise of the cloud and distributed workforces.</p>
         <p>In this post, we will explore:</p>
@@ -301,7 +297,6 @@
       <title>Test Driven Infrastructure with varnishtest</title>
       <link>https://referentiallabs.com/blog/varnishtest/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/varnishtest/</guid>
-      <description/>
       <content:encoded>
         <![CDATA[<p>Infrastructure as code and continuous integration/continuous delivery (CI/CD) pipelines are becoming the norm for delivering software applications. By codifying infrastructure and leveraging automation, organizations can release changes faster and with more reliability.</p>
         <p>A key practice in modern software delivery is test driven development (TDD), where tests are written before code. This ensures that the code is testable and aligns with requirements. The same TDD principles can be applied when managing infrastructure configurations.</p>
@@ -538,7 +533,6 @@
       <title>11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application</title>
       <link>https://referentiallabs.com/blog/varnish-12-techniques/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/varnish-12-techniques/</guid>
-      <description/>
       <content:encoded>
         <![CDATA[<p>As web applications grow in popularity, they often struggle to scale to meet increasing traffic demands. The application servers become overloaded, response times suffer, and the user experience deteriorates. Many sites turn to cache solutions like Varnish to improve performance and reduce load on their backends.</p>
         <p>Varnish provides a caching HTTP reverse proxy that stores common responses in memory and serves those directly, bypassing application servers entirely for cached content. This greatly reduces the work required from the backend application servers. However, Varnish will only provide significant benefit if it can serve a high percentage of requests from cache - known as the hit rate.</p>
@@ -656,7 +650,6 @@
       <title>Autothrottle: Manage Resources for SLO-Targeted Microservices</title>
       <link>https://referentiallabs.com/blog/autothrottle-resource-management-for-microservices/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/autothrottle-resource-management-for-microservices/</guid>
-      <description/>
       <content:encoded>
         <![CDATA[<p>Microservices have become a popular architecture paradigm, providing benefits like independent scaling and modularity. However, operating and maintaining microservices introduces challenges around efficiently managing resources to provide good user experience within cost constraints.</p>
         <p>This paper presents an intriguing bi-level control approach called Autothrottle that decouples application-level SLO monitoring from service-level resource controllers. The notion of a CPU throttle-based performance target is quite exciting, as it provides a way to bridge these levels. Platform engineers may find several practical takeaways from this paper when managing microservices.</p>
@@ -681,7 +674,6 @@
       <title>HTTP Load Balancing with NGINX</title>
       <link>https://referentiallabs.com/blog/nginx-http-load-balancing/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/nginx-http-load-balancing/</guid>
-      <description/>
       <content:encoded>
         <![CDATA[<p>For the last twelve years, I have been using NGINX to provide load balancing solutions for web applications. In this post I wanted to document ways of setting up HTTP load balancing via NGINX and some common considerations you should make with your web application needs in mind. By the end of this post, you should have a good understanding of how to use NGINX to easily distribute requests across multiple servers for many cases. However, if you are having a hard time figuring out in an evidence backed method the most effective approach for your web application feel free to explore <a href="https://referentiallabs.com/#plans">our plans which you can pause at any time</a> between available work.</p>
         <p>Load balancing is one of those unsung hero techniques that keeps the internet running smoothly. The goal is simple - take incoming requests and spread them evenly across a group of servers. But the benefits are huge:</p>
@@ -862,7 +854,6 @@
       <title>Open Source Software Supply Chain Attacks Review</title>
       <link>https://referentiallabs.com/blog/open-source-software-supply-chain-attacks-review/</link>
       <guid isPermaLink="false">https://referentiallabs.com/blog/open-source-software-supply-chain-attacks-review/</guid>
-      <description/>
       <content:encoded>
         <![CDATA[<p>Last month in Lecture Notes in Computer Science, vol 12223, Ohm, Plate, Sykosch and Meier published
         <a href="https://link.springer.com/chapter/10.1007/978-3-030-52683-2_2">Backstabber’s Knife Collection: A Review of Open Source Software Supply Chain Attacks</a>.</p>
