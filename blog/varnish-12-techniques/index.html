@@ -36,6 +36,140 @@
     },
     "url": "/blog/varnish-12-techniques/"
   }
+</script><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    
+    
+    {
+      "@type": "Question",
+      "name": "How can I optimize Cache-Control headers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set the max-age directive appropriately to cache content for the maximum 
+freshness period. Use higher max-age values for cacheable content. Avoid 
+no-cache and no-store to block caching.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I manually adjust TTLs in Varnish?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, override default TTLs with higher values via custom VCL code to 
+keep cacheable content cached longer. But don&#39;t use extremely long TTLs
+that would serve stale content.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the benefits of enabling grace mode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Grace mode reduces load spikes on backends by serving stale cache
+briefly during revalidations. Enable grace mode to avoid thundering
+herd problems.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why normalize request headers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Normalizing headers like User-Agent combines cache variations for 
+much higher cache efficiency rather than separate cached versions.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can filtering cookies help?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Caching more content is possible by filtering out non-essential cookies
+like analytics cookies that don&#39;t impact cacheability.  
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What&#39;s wrong with overusing Vary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Too much Vary usage leads to an explosion of unnecessarily cached  
+variants. Normalize associated request headers to ease this cache 
+fragmentation.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to handle uncachable content?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use hit-for-pass and hit-for-miss configurations to optimize caching
+of responses that can&#39;t be cached initially but may become cacheable.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will Redis help increase hits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Redis provides another caching layer to capture misses from  
+Varnish&#39;s cache for dynamic or personalized content.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I offload static assets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Offloading static assets improves cache density. Remove them from
+Varnish caching since they waste space but never change.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why rate limit crawlers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aggressive crawler traffic can easily overwhelm caches as they  
+expire. Enforce rate limits to prevent cascade failures during spikes.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is proactive purging beneficial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, proactively purge old content immediately when updated rather 
+than just letting caches slowly expire stale content.
+"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I monitor caching performance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Continuously monitor key metrics like hit rate, misses, and object
+bloat. Use this data to further optimize Varnish configurations for 
+even better caching.
+"
+      }
+    }
+  ]
+}
 </script><main class="max-w-3xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full px-3"><article class="prose"><h1 class="text-2xl font-bold">11 Varnish Web Acceleration Techniques Shield Your Slow Legacy Web Application</h1><p class="text-base front-light">5 minutes read (1276 words)</p><p class="text-base font-light italic pb-3 border-b border-stone-300">August 26th, 2023</p><div><img alt="Varnish Cache logo" class="w-5/6 mx-auto aspect-[11/5]" height="635" src="/images/logos/varnish-cache.webp" width="844"><div class="prose"><p>As web applications grow in popularity, they often struggle to scale to meet increasing traffic demands. The application servers become overloaded, response times suffer, and the user experience deteriorates. Many sites turn to cache solutions like Varnish to improve performance and reduce load on their backends.</p><p>Varnish provides a caching HTTP reverse proxy that stores common responses in memory and serves those directly, bypassing application servers entirely for cached content. This greatly reduces the work required from the backend application servers. However, Varnish will only provide significant benefit if it can serve a high percentage of requests from cache - known as the hit rate.</p><p>Tuning Varnish appropriately is crucial to achieving a high hit rate. There are many techniques that can optimize Varnish to cache more content and keep it cached longer. With the right configuration, sites can often improve their hit rate from sub 50% to over 90%, with corresponding reductions in application server load.</p><p>This essay will explore 11 key optimization techniques to tune Varnish caching and attain high hit rates:</p><h2>1. Set Cache-Control Headers</h2><p>The Cache-Control header instructs caches how to handle content. It is one of the primary mechanisms for controlling cache behavior. Varnish looks at Cache-Control to determine if a response can be cached and for how long.</p><p>Backend applications should set the max-age directive appropriately in Cache-Control. This tells caches the maximum time they can reuse a response before revalidating it. Higher max-age values allow longer caching.</p><p>For example:</p><pre><code class="language-text hljs language-plaintext">Cache-Control: max-age=3600
 </code></pre><p>This caches the content for one hour before revalidating. Adjust max-age based on how frequently content changes. Use the longest duration that will maintain freshness.</p><p>Setting no-cache or no-store instead prevents caching entirely. And private indicates not to cache publicly shared caches like Varnish.</p><p>So proper use of Cache-Control is imperative to maximize Varnish hit rates.</p><h2>2. Adjust TTLs</h2><p>The TTL (Time To Live) determines the cache lifetime of an object in Varnish. After the TTL expires, caches are invalidated.</p><p>Varnish computes a TTL based on Cache-Control headers and other factors. But Varnish also allows manually overriding TTLs in VCL configuration.</p><p>For example:</p><pre><code class="language-text hljs language-plaintext">sub vcl_backend_response {
   if (bereq.url ~ "^/legacy/") {
